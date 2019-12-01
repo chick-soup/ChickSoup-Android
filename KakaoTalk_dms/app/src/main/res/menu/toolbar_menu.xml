@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/id_search"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="아이디 검색"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/friend_search"
+        android:icon="@drawable/ic_person_add_black_24dp"
+        android:title="친구 찾기"
+        app:showAsAction="always" />
+</menu>

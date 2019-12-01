@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/friends"
+        android:icon="@drawable/ic_people_outline_black_24dp"
+        android:title="Friends"/>
+    <item
+        android:id="@+id/chat"
+        android:icon="@drawable/ic_chat_bubble_outline_black_24dp"
+        android:title="Chat"/>
+    <item
+        android:id="@+id/account"
+        android:icon="@drawable/ic_person_outline_black_24dp"
+        android:title="Account"
+        />
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="Setting"/>
+
+</menu>

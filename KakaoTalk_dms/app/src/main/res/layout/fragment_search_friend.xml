@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.SearchFriendFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/backimage"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chick Soup"
+            android:textColor="#000000"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guideline113"
+            app:layout_constraintEnd_toStartOf="@+id/guideline112"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline111"
+            app:layout_constraintTop_toTopOf="@+id/guideline114"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/search_friendId_inputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="305dp"
+            android:layout_height="61dp"
+            android:textColorHint="#000000"
+            app:boxCornerRadiusBottomEnd="35dp"
+            app:boxCornerRadiusBottomStart="35dp"
+            app:boxCornerRadiusTopEnd="35dp"
+            app:boxCornerRadiusTopStart="35dp"
+            app:boxStrokeColor="#FEE100"
+            app:boxStrokeWidth="2dp"
+            app:hintTextAppearance="@style/TextAppearance.AppCompat"
+            app:layout_constraintBottom_toTopOf="@+id/guideline109"
+            app:layout_constraintStart_toStartOf="@+id/guideline111"
+            app:layout_constraintTop_toTopOf="@+id/guideline101">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search_id_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="아이디를 입력하세요"
+                android:inputType="text"
+                android:textCursorDrawable="@android:color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/searchId_btn"
+            android:layout_width="74dp"
+            android:layout_height="62dp"
+            android:backgroundTint="@color/background"
+            android:gravity="center"
+            android:text="검색"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:cornerRadius="35dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline109"
+            app:layout_constraintEnd_toStartOf="@+id/guideline112"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/search_friendId_inputLayout"
+            app:layout_constraintTop_toTopOf="@+id/guideline101"
+            app:layout_constraintVertical_bias="0.666" />
+
+        <ImageView
+            android:id="@+id/search_friend_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/back"
+            app:layout_constraintBottom_toTopOf="@+id/guideline114"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline101"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="114dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline109"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="179dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline111"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline112"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="395dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline113"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="97dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline114"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="53dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline115"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="206dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_friend_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline112"
+            app:layout_constraintStart_toStartOf="@+id/guideline111"
+            app:layout_constraintTop_toTopOf="@+id/guideline115"
+            tools:listitem="@layout/item_search_friend"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
