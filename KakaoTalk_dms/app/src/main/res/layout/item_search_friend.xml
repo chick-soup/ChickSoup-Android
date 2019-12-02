@@ -95,29 +95,4 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.17" />
 
-    <Button
-        android:id="@+id/add_btn"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="추가"
-        android:background="@drawable/black_radious"
-        app:layout_constraintBottom_toTopOf="@+id/guideline41"
-        app:layout_constraintEnd_toStartOf="@+id/guideline117"
-        app:layout_constraintStart_toStartOf="@+id/guideline116"
-        app:layout_constraintTop_toTopOf="@+id/guideline42" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline116"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.80" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline117"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.96107054" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

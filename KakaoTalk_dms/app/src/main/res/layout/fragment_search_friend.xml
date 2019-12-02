@@ -29,7 +29,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/search_friendId_inputLayout"
+            android:id="@+id/search_friend_inputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="305dp"
             android:layout_height="61dp"
@@ -46,7 +46,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline101">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/search_id_editText"
+                android:id="@+id/search_friend_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="아이디를 입력하세요"
@@ -56,7 +56,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/searchId_btn"
+            android:id="@+id/searchfriend_btn"
             android:layout_width="74dp"
             android:layout_height="62dp"
             android:backgroundTint="@color/background"

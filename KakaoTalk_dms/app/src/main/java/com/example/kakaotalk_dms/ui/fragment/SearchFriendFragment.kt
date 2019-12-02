@@ -22,23 +22,23 @@ class SearchFriendFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val newIdAdapter = SearchFriendAdapter()
-        search_friend_list.adapter  = newIdAdapter
+        val newFriendAdapter = SearchFriendAdapter()
+        search_friend_list.adapter  = newFriendAdapter
 
         val lm = LinearLayoutManager(this.context!!)
         search_friend_list.layoutManager = lm
         search_friend_list.setHasFixedSize(true)
 
-        newIdAdapter.add(SearchFriendUser("a",""))
-        newIdAdapter.add(SearchFriendUser("b",""))
-        newIdAdapter.add(SearchFriendUser("c",""))
-        newIdAdapter.add(SearchFriendUser("d",""))
-        newIdAdapter.add(SearchFriendUser("e",""))
-        newIdAdapter.add(SearchFriendUser("f",""))
-        newIdAdapter.add(SearchFriendUser("a",""))
-        newIdAdapter.add(SearchFriendUser("a",""))
-        newIdAdapter.add(SearchFriendUser("a",""))
-        newIdAdapter.add(SearchFriendUser("a",""))
+        newFriendAdapter.add(SearchFriendUser("a",""))
+        newFriendAdapter.add(SearchFriendUser("b",""))
+        newFriendAdapter.add(SearchFriendUser("c",""))
+        newFriendAdapter.add(SearchFriendUser("d",""))
+        newFriendAdapter.add(SearchFriendUser("e",""))
+        newFriendAdapter.add(SearchFriendUser("f",""))
+        newFriendAdapter.add(SearchFriendUser("a",""))
+        newFriendAdapter.add(SearchFriendUser("a",""))
+        newFriendAdapter.add(SearchFriendUser("a",""))
+        newFriendAdapter.add(SearchFriendUser("a",""))
 
         search_friend_back_btn.setOnClickListener {
             val transaction = activity!!.supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.fade_in,R.anim.fade_out)
