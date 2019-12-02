@@ -8,7 +8,7 @@
 
 
     <FrameLayout
-        android:id="@+id/fragment_change_profile"
+        android:id="@+id/fragment_account_profile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
@@ -31,7 +31,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/change_image"
+                android:id="@+id/account_image"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:src="@mipmap/ic_launcher"
@@ -42,7 +42,7 @@
                 app:riv_corner_radius="1000dp" />
 
             <ImageView
-                android:id="@+id/change_setting"
+                android:id="@+id/account_setting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@+id/guideline90"
@@ -81,7 +81,7 @@
                 app:layout_constraintGuide_percent="0.7" />
 
             <TextView
-                android:id="@+id/change_name"
+                android:id="@+id/account_name"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -128,7 +128,6 @@
                 app:layout_constraintGuide_percent="0.94" />
 
             <TextView
-                android:id="@+id/설정"
                 android:layout_width="80dp"
                 android:layout_height="34dp"
                 android:gravity="center"
