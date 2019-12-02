@@ -94,7 +94,7 @@
             app:layout_constraintGuide_percent="0.12" />
 
         <ImageView
-            android:id="@+id/id_search"
+            android:id="@+id/friend_search"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@drawable/ic_search_black_24dp"
@@ -106,7 +106,7 @@
             app:showAsAction="always" />
 
         <ImageView
-            android:id="@+id/friend_search"
+            android:id="@+id/id_search"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@drawable/ic_person_add_black_24dp"
