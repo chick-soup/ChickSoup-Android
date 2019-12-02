@@ -37,8 +37,10 @@
                 android:src="@mipmap/ic_launcher"
                 app:layout_constraintBottom_toTopOf="@+id/guideline86"
                 app:layout_constraintEnd_toStartOf="@+id/guideline89"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline85"
                 app:layout_constraintTop_toTopOf="@+id/guideline126"
+                app:layout_constraintVertical_bias="1.0"
                 app:riv_corner_radius="50dp" />
 
             <ImageView
