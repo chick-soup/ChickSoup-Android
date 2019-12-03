@@ -201,7 +201,7 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="차단/숨김 목록 관리"
+                    android:text="차단 목록 관리"
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -220,7 +220,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/change_profile"
+            android:id="@+id/hide_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:cardCornerRadius="20dp"
@@ -239,7 +239,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="프로필 변경"
+                    android:text="숨김 목록 관리"
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:textStyle="bold"

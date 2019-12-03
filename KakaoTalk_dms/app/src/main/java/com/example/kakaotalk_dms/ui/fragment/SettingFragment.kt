@@ -20,9 +20,9 @@ class SettingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        change_profile.setOnClickListener{
+        hide_list.setOnClickListener{
             val transaction = activity?.supportFragmentManager?.beginTransaction()?.setCustomAnimations(R.anim.slide_in_bottom,R.anim.fade_out)
-            transaction?.replace(R.id.main_frame,ChangeProfileFragment())
+            transaction?.replace(R.id.main_frame,HideFragment())
             transaction?.addToBackStack(null)
             transaction?.commit()
 
