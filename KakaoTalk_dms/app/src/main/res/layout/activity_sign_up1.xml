@@ -107,7 +107,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/signup_btn"
+                android:id="@+id/signup_next_btn"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/bottom_radious"

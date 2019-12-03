@@ -3,6 +3,8 @@ package com.example.kakaotalk_dms.ui.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.kakaotalk_dms.R
+import kotlinx.android.synthetic.main.activity_sign_up1.*
+import org.jetbrains.anko.startActivity
 
 class SignUp1Activity : AppCompatActivity() {
 
@@ -10,5 +12,8 @@ class SignUp1Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up1)
 
+        signup_next_btn.setOnClickListener {
+            startActivity<SignUp2Activity>()
+        }
     }
 }
