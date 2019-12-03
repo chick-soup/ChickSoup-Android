@@ -9,10 +9,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/backimage"/>
+            android:background="@drawable/backimage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,6 +47,7 @@
             app:boxStrokeWidth="2dp"
             app:hintTextAppearance="@style/TextAppearance.AppCompat"
             app:layout_constraintBottom_toTopOf="@+id/guideline109"
+            app:layout_constraintEnd_toStartOf="@+id/guideline112"
             app:layout_constraintStart_toStartOf="@+id/guideline111"
             app:layout_constraintTop_toTopOf="@+id/guideline101">
 
@@ -55,24 +61,15 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/searchId_btn"
-            android:layout_width="74dp"
-            android:layout_height="62dp"
-            android:backgroundTint="@color/background"
-            android:gravity="center"
-            android:text="검색"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:textColor="#ffffff"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:cornerRadius="35dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline109"
+        <ImageView
+            android:id="@+id/search_id_btn"
+            android:layout_width="108dp"
+            android:layout_height="86dp"
+            android:src="@drawable/searchbtn"
+            app:layout_constraintBottom_toTopOf="@+id/guideline115"
             app:layout_constraintEnd_toStartOf="@+id/guideline112"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/searchId_inputLayout"
-            app:layout_constraintTop_toTopOf="@+id/guideline101"
-            app:layout_constraintVertical_bias="0.666" />
+            app:layout_constraintStart_toStartOf="@+id/guideline111"
+            app:layout_constraintTop_toBottomOf="@+id/searchId_inputLayout" />
 
         <ImageView
             android:id="@+id/search_id_back_btn"
@@ -135,7 +132,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="206dp" />
+            app:layout_constraintGuide_begin="330dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/searchId_list"

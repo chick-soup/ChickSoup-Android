@@ -40,20 +40,8 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline85"
                 app:layout_constraintTop_toTopOf="@+id/guideline126"
-                app:layout_constraintVertical_bias="1.0"
-                app:riv_corner_radius="50dp" />
-
-            <ImageView
-                android:id="@+id/change_setting"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/guideline90"
-                app:layout_constraintEnd_toStartOf="@+id/guideline64"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/guideline55"
-                app:layout_constraintTop_toTopOf="@+id/guideline59"
-                app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/ic_settings_black_24dp" />
+                app:layout_constraintVertical_bias="0.0"
+                app:riv_corner_radius="20dp" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline57"
@@ -81,19 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.7" />
-
-            <TextView
-                android:id="@+id/change_name"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:text="이름"
-                android:textSize="17sp"
-                app:layout_constraintBottom_toTopOf="@+id/guideline87"
-                app:layout_constraintEnd_toStartOf="@+id/guideline82"
-                app:layout_constraintStart_toStartOf="@+id/guideline81"
-                app:layout_constraintTop_toTopOf="@+id/guideline86" />
+                app:layout_constraintGuide_percent="0.62" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline85"
@@ -107,14 +83,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.79" />
+                app:layout_constraintGuide_percent="0.7" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline87"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.84" />
+                app:layout_constraintGuide_percent="0.77" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline89"
@@ -129,17 +105,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.94" />
-
-            <TextView
-                android:id="@+id/설정"
-                android:layout_width="80dp"
-                android:layout_height="34dp"
-                android:gravity="center"
-                android:text="프로필 수정"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline89"
-                app:layout_constraintStart_toStartOf="@+id/guideline85"
-                app:layout_constraintTop_toTopOf="@+id/guideline90" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline91"
@@ -163,7 +128,7 @@
                 app:layout_constraintGuide_percent="0.12" />
 
             <ImageView
-                android:id="@+id/change_profile_back"
+                android:id="@+id/change_profile_back_btn"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:src="@drawable/back"
@@ -171,34 +136,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/guideline52"
                 app:layout_constraintStart_toStartOf="@+id/guideline92"
                 app:layout_constraintTop_toTopOf="@+id/guideline91" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline55"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.42" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline64"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.58" />
-
-            <TextView
-                android:id="@+id/profile_message"
-                android:layout_width="260dp"
-                android:layout_height="85dp"
-                android:gravity="center"
-                android:text="상태메세지를 입력합시다아ㅏ아아아아아"
-                android:textColor="#ffffff"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/guideline57"
-                app:layout_constraintEnd_toStartOf="@+id/guideline82"
-                app:layout_constraintStart_toStartOf="@+id/guideline81"
-                app:layout_constraintTop_toTopOf="@+id/guideline88" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline88"
@@ -219,14 +156,80 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.86" />
+                app:layout_constraintGuide_percent="0.84" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline126"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.62" />
+                app:layout_constraintGuide_percent="0.5" />
+
+            <Button
+                android:id="@+id/change_profile_image"
+                android:layout_width="130dp"
+                android:layout_height="0dp"
+                android:text="프로필 사진 변경"
+                app:layout_constraintBottom_toTopOf="@+id/guideline87"
+                app:layout_constraintEnd_toStartOf="@+id/change_backimage_btn"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline52"
+                app:layout_constraintTop_toTopOf="@+id/guideline86"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/change_backimage_btn"
+                android:layout_width="130dp"
+                android:layout_height="0dp"
+                android:text="배경 사진 변경"
+                app:layout_constraintBottom_toTopOf="@+id/guideline87"
+                app:layout_constraintEnd_toStartOf="@+id/guideline38"
+                app:layout_constraintTop_toTopOf="@+id/guideline86"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline38"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.84" />
+
+            <EditText
+                android:id="@+id/change_nick_editText"
+                android:layout_width="0dp"
+                android:layout_height="39dp"
+                android:background="@drawable/edittext_radious"
+                android:hint="  닉네임"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toTopOf="@+id/guideline59"
+                app:layout_constraintEnd_toStartOf="@+id/guideline38"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline52"
+                app:layout_constraintTop_toTopOf="@+id/guideline87" />
+
+            <EditText
+                android:id="@+id/change_message_editText"
+                android:layout_width="0dp"
+                android:layout_height="39dp"
+                android:background="@drawable/edittext_radious"
+                android:hint="  상태 메세지"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toTopOf="@+id/guideline90"
+                app:layout_constraintEnd_toStartOf="@+id/guideline38"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline52"
+                app:layout_constraintTop_toTopOf="@+id/guideline59"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/change_profile_check_btn"
+                android:layout_width="55dp"
+                android:layout_height="57dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/change_message_editText"
+                app:srcCompat="@drawable/check_btn" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

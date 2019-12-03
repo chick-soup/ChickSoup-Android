@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.CheckIdFragment"
-    android:background="#FEE100">
+    android:background="@color/background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/backimage">
 
         <ImageView
             android:id="@+id/imageView7"
@@ -99,21 +100,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.4" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:text="당신의 ID는 ?"
-            android:textColor="#3B1C1C"
-            android:textSize="25sp"
-            android:textStyle="bold"
-
-            app:layout_constraintBottom_toTopOf="@+id/guideline97"
-            app:layout_constraintEnd_toStartOf="@+id/guideline100"
-            app:layout_constraintStart_toStartOf="@+id/guideline99"
-            app:layout_constraintTop_toTopOf="@+id/guideline102" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline105"
