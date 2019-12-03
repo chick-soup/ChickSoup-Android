@@ -47,9 +47,10 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@+id/guideline90"
                 app:layout_constraintEnd_toStartOf="@+id/guideline82"
+                app:layout_constraintHorizontal_bias="0.541"
                 app:layout_constraintStart_toStartOf="@+id/guideline64"
                 app:layout_constraintTop_toTopOf="@+id/guideline59"
-                app:layout_constraintVertical_bias="0.583"
+                app:layout_constraintVertical_bias="0.666"
                 app:srcCompat="@drawable/ic_settings_black_24dp" />
 
             <androidx.constraintlayout.widget.Guideline

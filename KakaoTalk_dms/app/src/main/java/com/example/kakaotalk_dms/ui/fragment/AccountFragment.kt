@@ -25,6 +25,12 @@ class AccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        account_setting.setOnClickListener {
+            val transaction = activity!!.supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_bottom,R.anim.fade_out)
+            transaction.replace(R.id.main_frame,ChangeProfileFragment())
+            transaction.commit()
+        }
 
     }
+
 }
