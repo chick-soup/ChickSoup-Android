@@ -31,6 +31,15 @@ class AccountFragment : Fragment() {
             transaction.commit()
         }
 
+        val args: Bundle? = arguments
+        if(args != null)
+        {
+            val mNick: String? = args.getString("nick")
+            val state_message:String? = args.getString("state_message")
+
+            account_name.text = mNick
+            account_message.text = state_message
+        }
     }
 
 }

@@ -8,13 +8,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 
 import com.example.kakaotalk_dms.R
+import kotlinx.android.synthetic.main.activity_signin.*
 import kotlinx.android.synthetic.main.fragment_change_profile.*
 
 class ChangeProfileFragment : Fragment() {
 
     private val GET_GALLERY_IMAGE: Int = 200
+    private val GET_BACK_IMAGE: Int = 1
     //private lateinit var mPreferences: SharedPreferences
 
     override fun onCreateView(
@@ -34,7 +38,7 @@ class ChangeProfileFragment : Fragment() {
             transaction?.replace(R.id.main_frame, AccountFragment())
             transaction?.commit()
         }
-        change_profile_image.setOnClickListener {
+        change_profileimage_btn.setOnClickListener {
             val intent: Intent = Intent(Intent.ACTION_PICK)
             intent.setDataAndType(
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
@@ -42,17 +46,39 @@ class ChangeProfileFragment : Fragment() {
             )
             startActivityForResult(intent, GET_GALLERY_IMAGE)
         }
+        change_backimage_btn.setOnClickListener {
+            val intent: Intent = Intent(Intent.ACTION_PICK)
+            intent.setDataAndType(
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                "image/*"
+            )
+            startActivityForResult(intent, GET_BACK_IMAGE)
+        }
+        change_profile_check_btn.setOnClickListener {
+            val args: Bundle = Bundle()
+            args.putString("nick", change_nick_editText.text.toString())
+            args.putString("state_message", change_message_editText.text.toString())
+
+            val fragment: Fragment = AccountFragment()
+            val fm: FragmentManager? = fragmentManager
+            val transaction:FragmentTransaction = fm!!.beginTransaction()
+            fragment.arguments = args
+            transaction.replace(R.id.main_frame,fragment).addToBackStack(null).setCustomAnimations(R.anim.fade_in,R.anim.fade_out).commit()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == GET_GALLERY_IMAGE && resultCode == RESULT_OK && data != null && data.data != null) {
-           val selectedImageUri: Uri = data.data!!
-          change_image.setImageURI(selectedImageUri)
+            val profileImageUri: Uri = data.data!!
+            change_image.setImageURI(profileImageUri)
 
 //            mPreferences = activity!!.getSharedPreferences("com.example.kakaotalk_dms.ui.fragment", MODE_PRIVATE)
 //            val preferencesEditor:SharedPreferences.Editor = mPreferences.edit()
 //            preferencesEditor.putString("profile_image", selectedImageUri.toString())
 //            preferencesEditor.apply()
+        } else if (requestCode == GET_BACK_IMAGE && resultCode == RESULT_OK && data != null && data.data != null) {
+            val backImageUri: Uri = data.data!!
+            change_profile_backimage.setImageURI(backImageUri)
         }
 
     }

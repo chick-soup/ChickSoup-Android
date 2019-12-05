@@ -174,7 +174,7 @@
                 app:layout_constraintGuide_percent="0.58" />
 
             <TextView
-                android:id="@+id/profile_message"
+                android:id="@+id/account_message"
                 android:layout_width="260dp"
                 android:layout_height="85dp"
                 android:gravity="center"
