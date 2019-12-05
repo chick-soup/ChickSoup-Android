@@ -12,6 +12,7 @@
         android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/logout_card"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:cardCornerRadius="20dp"
@@ -350,7 +351,7 @@
             android:id="@+id/textView6"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="Chick Soup Setting"
+            android:text="Setting"
             android:textColor="#000000"
             android:textSize="30dp"
             android:textStyle="bold"
