@@ -14,8 +14,6 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signin)
 
-        signin_idInputLayout.isErrorEnabled = true
-
         login_btn.setOnClickListener {
             startActivity<MainActivity>()
         }
