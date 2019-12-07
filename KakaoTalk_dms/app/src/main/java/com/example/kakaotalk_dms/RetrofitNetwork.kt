@@ -6,8 +6,11 @@ import retrofit2.http.POST
 
 interface RetrofitNetwork {
     @POST("/email/check")
-    fun sendEmail(@Body signup:SignUp): Call<Jsonparse>
+    fun sendEmail(@Body signup:SignUp): Call<SignUp>
 
     @POST("/email/auth")
-    fun sendCode(@Body signup: SignUp): Call<Jsonparse>
-}
+    fun sendCode(@Body signup: SignUp): Call<SignUp>
+
+    @POST("/user/signup")
+    fun sendPassword(@Body signup: SignUp): Call<SignUp>
+    }
