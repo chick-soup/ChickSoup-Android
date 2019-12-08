@@ -88,7 +88,7 @@
 
             <Button
                 android:id="@+id/sendEmail_btn"
-                android:layout_width="70dp"
+                android:layout_width="0dp"
                 android:layout_height="41dp"
                 android:background="@drawable/btn_radious"
                 android:text="확인"
@@ -104,7 +104,7 @@
 
             <Button
                 android:id="@+id/sendCode_btn"
-                android:layout_width="70dp"
+                android:layout_width="0dp"
                 android:layout_height="41dp"
                 android:background="@drawable/btn_radious"
                 android:text="인증"
@@ -113,8 +113,10 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/guideline31"
                 app:layout_constraintEnd_toStartOf="@+id/guideline29"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline25"
-                app:layout_constraintTop_toTopOf="@+id/guideline30"/>
+                app:layout_constraintTop_toTopOf="@+id/guideline30"
+                app:layout_constraintVertical_bias="0.0" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/check_pw"
