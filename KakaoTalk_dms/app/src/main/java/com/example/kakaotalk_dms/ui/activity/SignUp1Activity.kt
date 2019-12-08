@@ -6,7 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kakaotalk_dms.R
 import com.example.kakaotalk_dms.Retrofit
-import com.example.kakaotalk_dms.SignUp
+import com.example.kakaotalk_dms.SignUp1
 import kotlinx.android.synthetic.main.activity_sign_up1.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -16,152 +16,158 @@ import retrofit2.Response
 
 class SignUp1Activity : AppCompatActivity() {
 
-lateinit var jwt: String
-private lateinit var mPreferences: SharedPreferences
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_sign_up1)
 
-override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_sign_up1)
+        signup_idInputLayout.isErrorEnabled = true
+        signup_passwordInputLayout.isErrorEnabled = true
+        codeTextInputLayout.isErrorEnabled = true
 
-    signup_idInputLayout.isErrorEnabled = true
-    signup_passwordInputLayout.isErrorEnabled = true
-    codeTextInputLayout.isErrorEnabled = true
+        signup_next_btn.setOnClickListener {
+            val isEmailError: Boolean = emailError(signup_id.text.toString())
+            val isPasswordEqual: Boolean =
+                passwordCheck(signup_password.text.toString(), password_check.text.toString())
 
-    signup_next_btn.setOnClickListener {
-        val isEmailError: Boolean = emailError(signup_id.text.toString())
-        val isPasswordEqual: Boolean =
-            passwordCheck(signup_password.text.toString(), password_check.text.toString())
+            if (isEmailError && isPasswordEqual) {
+                signup_password()
+                startActivity<SignUp2Activity>()
+            }
 
-        if (isEmailError && isPasswordEqual) {
-            signup_password()
-            startActivity<SignUp2Activity>()
         }
+        sendEmail_btn.setOnClickListener {
+            val isEmailError: Boolean = emailError(signup_id.text.toString())
+            if (isEmailError)
+                signup_post()
+        }
+        sendCode_btn.setOnClickListener {
+            Log.d("ssddddddddddsdfsdfsdf", "aaa")
+            auth_code()
+        }
+    }
 
-    }
-    sendEmail_btn.setOnClickListener {
-        val isEmailError: Boolean = emailError(signup_id.text.toString())
-        if (isEmailError)
-            signup_post()
-    }
-    sendCode_btn.setOnClickListener {
-        Log.d("ssddddddddddsdfsdfsdf", "aaa")
-        auth_code()
-    }
-}
-
-private fun emailError(signup_id: String): Boolean {
-    return if (signup_id.isEmpty()) {
-        signup_idInputLayout.error = "      이메일을 입력하세요"
-        false
-    } else {
-        if (android.util.Patterns.EMAIL_ADDRESS.matcher(signup_id).matches()) {
-            signup_idInputLayout.error = ""
-            true
+    private fun emailError(signup_id: String): Boolean {
+        return if (signup_id.isEmpty()) {
+            signup_idInputLayout.error = "      이메일을 입력하세요"
+            false
         } else {
-            signup_idInputLayout.error = "      이메일 형식이 맞지 않습니다."
-            false
-        }
-    }
-}
-
-private fun passwordCheck(signup_password: String, password_check: String): Boolean {
-    return if (signup_password.isEmpty()) {
-        signup_passwordInputLayout.error = "      비밀번호를 입력하세요"
-        false
-    } else {
-        if (signup_password.equals(password_check)) {
-            check_pw.error = ""
-            true
-        } else {
-            check_pw.error = "      비밀번호가 일치하지 않습니다."
-            false
-        }
-    }
-}
-
-fun isIdCorrect(auth_code: String): Boolean {
-    return when {
-        auth_code.equals("200") -> {
-            toast("이메일 인증코드 발송 ")
-            Log.d("success", auth_code)
-            true
-        }
-        auth_code.equals("470") -> {
-            toast("이미 인증이 완료된 이메일 입니다.")
-            false
-        }
-        else -> false
-    }
-}
-
-private fun signup_post() {
-    val userEmail: String = signup_id.text.toString()
-    val call: Call<SignUp> = Retrofit().service.sendEmail(SignUp(userEmail))
-
-    call.enqueue(object : Callback<SignUp> {
-        override fun onFailure(call: Call<SignUp>, t: Throwable) {
-            Log.e("fail", t.message.toString())
-        }
-
-        override fun onResponse(call: Call<SignUp>, response: Response<SignUp>) {
-            isIdCorrect(response.code().toString())
-        }
-    })
-}
-
-private fun auth_code() {
-    val userEmail: String = signup_id.text.toString()
-    val auth_code: String = check_code.text.toString()
-    val call: Call<SignUp> = Retrofit().service.sendCode(SignUp(userEmail, auth_code, ""))
-
-    call.enqueue(object : Callback<SignUp> {
-        override fun onFailure(call: Call<SignUp>, t: Throwable) {
-            Log.e("auth_code_error", t.printStackTrace().toString())
-        }
-
-        override fun onResponse(call: Call<SignUp>, response: Response<SignUp>) {
-            Log.d("auth_response", "response")
-            when {
-                response.code() == 200 -> {
-                    signup_id.isFocusable = false
-                    signup_id.isClickable = false
-                    signup_id.setBackgroundResource(R.color.gray)
-                    check_code.isFocusable = false
-                    check_code.isClickable = false
-                    check_code.setBackgroundResource(R.color.gray)
-                    toast("이메일 인증성공")
-                    Log.d("auth_code", response.code().toString())
-                }
-                response.code() == 470 -> toast("이미 인증 처리가 완료된 이메일 입니다.")
-                response.code() == 471 -> toast("이메일 인증이 완료되지 않았습니다.")
-                response.code() == 472 -> toast("이메일의 인증코드가 맞지 올바르지 않습니다.")
+            if (android.util.Patterns.EMAIL_ADDRESS.matcher(signup_id).matches()) {
+                signup_idInputLayout.error = ""
+                true
+            } else {
+                signup_idInputLayout.error = "      이메일 형식이 맞지 않습니다."
+                false
             }
         }
-    })
-}
+    }
 
-private fun signup_password() {
-    val userEmail = signup_id.text.toString()
-    val userPassword = signup_password.text.toString()
-
-    val call: Call<SignUp> =
-        Retrofit().service.sendPassword(SignUp(userEmail, userPassword))
-
-    call.enqueue(object : Callback<SignUp> {
-        override fun onFailure(call: Call<SignUp>, t: Throwable) {
-            Log.e("signup_password", t.message.toString())
+    private fun passwordCheck(signup_password: String, password_check: String): Boolean {
+        return if (signup_password.isEmpty()) {
+            signup_passwordInputLayout.error = "      비밀번호를 입력하세요"
+            false
+        } else {
+            if (signup_password.equals(password_check)) {
+                check_pw.error = ""
+                true
+            } else {
+                check_pw.error = "      비밀번호가 일치하지 않습니다."
+                false
+            }
         }
+    }
 
-        override fun onResponse(call: Call<SignUp>, response: Response<SignUp>) {
-            Log.d("signup_password", response.code().toString())
-            when {
-                response.code() == 200 -> {
+    fun isIdCorrect(auth_code: String): Boolean {
+        return when {
+            auth_code.equals("200") -> {
+                toast("이메일 인증코드 발송 ")
+                Log.d("success", auth_code)
+                true
+            }
+            auth_code.equals("470") -> {
+                toast("이미 인증이 완료된 이메일 입니다.")
+                false
+            }
+            else -> false
+        }
+    }
 
-                }
-                response.code() == 471 -> toast("이메일 인증이 완료되지 않았습니다.")
-                response.code() == 472 -> toast("다른 사용자가 인증한 이메일입니다.")
+    private fun signup_post() {
+        val userEmail: String = signup_id.text.toString()
+        val call: Call<SignUp1> = Retrofit().service.sendEmail(SignUp1(userEmail))
+
+        call.enqueue(object : Callback<SignUp1> {
+            override fun onFailure(call: Call<SignUp1>, t: Throwable) {
+                Log.e("fail", t.message.toString())
+            }
+
+            override fun onResponse(call: Call<SignUp1>, response: Response<SignUp1>) {
+                isIdCorrect(response.code().toString())
+            }
+        })
+    }
+
+    private fun auth_code() {
+        val userEmail: String = signup_id.text.toString()
+        val auth_code: String = check_code.text.toString()
+        val call: Call<SignUp1> = Retrofit().service.sendCode(SignUp1(userEmail, auth_code, ""))
+
+        call.enqueue(object : Callback<SignUp1> {
+            override fun onFailure(call: Call<SignUp1>, t: Throwable) {
+                Log.e("auth_code_error", t.printStackTrace().toString())
+            }
+
+            override fun onResponse(call: Call<SignUp1>, response: Response<SignUp1>) {
+                Log.d("auth_response", "response")
+                when {
+                    response.code() == 200 -> {
+                        signup_id.isFocusable = false
+                        signup_id.isClickable = false
+                        signup_id.setBackgroundResource(R.color.gray)
+                        check_code.isFocusable = false
+                        check_code.isClickable = false
+                        check_code.setBackgroundResource(R.color.gray)
+                        toast("이메일 인증성공")
+                        Log.d("auth_code", response.code().toString())
+                    }
+                    response.code() == 470 -> toast("이미 인증 처리가 완료된 이메일 입니다.")
+                    response.code() == 471 -> toast("이메일 인증이 완료되지 않았습니다.")
+                    response.code() == 472 -> toast("이메일의 인증코드가 맞지 올바르지 않습니다.")
                 }
             }
         })
-     }
+    }
+
+    private fun signup_password() {
+        val userEmail = signup_id.text.toString()
+        val userPassword = signup_password.text.toString()
+
+        val call: Call<SignUp1> =
+            Retrofit().service.sendPassword(SignUp1(userEmail, userPassword))
+
+        call.enqueue(object : Callback<SignUp1> {
+            override fun onFailure(call: Call<SignUp1>, t: Throwable) {
+                Log.e("signup_password", t.message.toString())
+            }
+
+            override fun onResponse(call: Call<SignUp1>, response: Response<SignUp1>) {
+                Log.d("signup_password", response.code().toString())
+                when {
+                    response.code() == 200 -> {
+                        val jwt: String = response.body()!!.userToken
+
+                        val prefs = getSharedPreferences("com.example.kakaotalk_dms.ui.SignUp1Activity",MODE_PRIVATE)
+                        val editor:SharedPreferences.Editor = prefs.edit()
+                        editor.putString("token",jwt)
+                        editor.apply()
+
+                        val current_jwt = prefs.getString("token","")
+                        Log.d("jwt",current_jwt.toString())
+
+                    }
+                    response.code() == 471 -> toast("이메일 인증이 완료되지 않았습니다.")
+                    response.code() == 472 -> toast("다른 사용자가 인증한 이메일입니다.")
+                }
+            }
+        })
+    }
 }

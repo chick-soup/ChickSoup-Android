@@ -19,7 +19,6 @@ class ChangeProfileFragment : Fragment() {
 
     private val GET_GALLERY_IMAGE: Int = 200
     private val GET_BACK_IMAGE: Int = 1
-    //private lateinit var mPreferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +38,7 @@ class ChangeProfileFragment : Fragment() {
             transaction?.commit()
         }
         change_profileimage_btn.setOnClickListener {
-            val intent: Intent = Intent(Intent.ACTION_PICK)
+            val intent = Intent(Intent.ACTION_PICK)
             intent.setDataAndType(
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 "image/*"
@@ -47,7 +46,7 @@ class ChangeProfileFragment : Fragment() {
             startActivityForResult(intent, GET_GALLERY_IMAGE)
         }
         change_backimage_btn.setOnClickListener {
-            val intent: Intent = Intent(Intent.ACTION_PICK)
+            val intent = Intent(Intent.ACTION_PICK)
             intent.setDataAndType(
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 "image/*"
@@ -55,7 +54,7 @@ class ChangeProfileFragment : Fragment() {
             startActivityForResult(intent, GET_BACK_IMAGE)
         }
         change_profile_check_btn.setOnClickListener {
-            val args: Bundle = Bundle()
+            val args = Bundle()
             args.putString("nick", change_nick_editText.text.toString())
             args.putString("state_message", change_message_editText.text.toString())
 
