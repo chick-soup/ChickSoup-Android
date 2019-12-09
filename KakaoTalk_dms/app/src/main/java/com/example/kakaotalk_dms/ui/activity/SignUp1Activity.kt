@@ -92,6 +92,7 @@ class SignUp1Activity : AppCompatActivity() {
     }
 
     private fun signup_post() {
+        Log.d("signup_post","실행")
         val userEmail: String = signup_id.text.toString()
         val call: Call<SignUp1> = Retrofit().service.sendEmail(SignUp1(userEmail))
 
@@ -102,6 +103,7 @@ class SignUp1Activity : AppCompatActivity() {
 
             override fun onResponse(call: Call<SignUp1>, response: Response<SignUp1>) {
                 isIdCorrect(response.code().toString())
+                Log.d("onResponse",response.code().toString())
             }
         })
     }

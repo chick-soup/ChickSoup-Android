@@ -79,7 +79,6 @@ class ChangeProfileFragment : Fragment() {
             val backImageUri: Uri = data.data!!
             change_profile_backimage.setImageURI(backImageUri)
         }
-
     }
 }
 

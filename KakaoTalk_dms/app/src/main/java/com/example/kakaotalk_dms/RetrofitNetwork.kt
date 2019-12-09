@@ -1,20 +1,21 @@
 package com.example.kakaotalk_dms
 
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface RetrofitNetwork {
     @POST("/email/check")
-    fun sendEmail(@Body signup1:SignUp1): Call<SignUp1>
+    fun sendEmail(@Body signup1: SignUp1): Call<SignUp1>
 
     @POST("/email/auth")
     fun sendCode(@Body signup1: SignUp1): Call<SignUp1>
 
-    @POST("/user/signup")
+    @POST("/signup")
     fun sendPassword(@Body signup1: SignUp1): Call<SignUp1>
 
-    @POST("/user/signup/profile")
-    fun sendProfile(@Header("access_token") authorization:String, @Body signUp2: SignUp2):Call<SignUp2>
-    }
+    @Multipart
+    @POST("/signup/profile")
+    fun sendProfile(@Header("Authorization") authorization: String, @Part file: MultipartBody.Part, @Part("nickname") nick:RequestBody): Call<UploadSuccess>
+}
