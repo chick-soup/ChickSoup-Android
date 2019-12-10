@@ -6,7 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kakaotalk_dms.R
 import com.example.kakaotalk_dms.Retrofit
-import com.example.kakaotalk_dms.SignUp1
+import com.example.kakaotalk_dms.data.SignUp1
 import kotlinx.android.synthetic.main.activity_sign_up1.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -94,7 +94,11 @@ class SignUp1Activity : AppCompatActivity() {
     private fun signup_post() {
         Log.d("signup_post","실행")
         val userEmail: String = signup_id.text.toString()
-        val call: Call<SignUp1> = Retrofit().service.sendEmail(SignUp1(userEmail))
+        val call: Call<SignUp1> = Retrofit().service.sendEmail(
+            SignUp1(
+                userEmail
+            )
+        )
 
         call.enqueue(object : Callback<SignUp1> {
             override fun onFailure(call: Call<SignUp1>, t: Throwable) {
@@ -111,7 +115,13 @@ class SignUp1Activity : AppCompatActivity() {
     private fun auth_code() {
         val userEmail: String = signup_id.text.toString()
         val auth_code: String = check_code.text.toString()
-        val call: Call<SignUp1> = Retrofit().service.sendCode(SignUp1(userEmail, auth_code, ""))
+        val call: Call<SignUp1> = Retrofit().service.sendCode(
+            SignUp1(
+                userEmail,
+                auth_code,
+                ""
+            )
+        )
 
         call.enqueue(object : Callback<SignUp1> {
             override fun onFailure(call: Call<SignUp1>, t: Throwable) {
@@ -144,7 +154,12 @@ class SignUp1Activity : AppCompatActivity() {
         val userPassword = signup_password.text.toString()
 
         val call: Call<SignUp1> =
-            Retrofit().service.sendPassword(SignUp1(userEmail, userPassword))
+            Retrofit().service.sendPassword(
+                SignUp1(
+                    userEmail,
+                    userPassword
+                )
+            )
 
         call.enqueue(object : Callback<SignUp1> {
             override fun onFailure(call: Call<SignUp1>, t: Throwable) {
