@@ -1,4 +1,4 @@
-package com.example.kakaotalk_dms
+package com.example.kakaotalk_dms.data
 
 import com.google.gson.annotations.SerializedName
 
