@@ -88,7 +88,7 @@ class SignUp2Activity : AppCompatActivity() {
             getSharedPreferences("com.example.kakaotalk_dms.ui.SignUp1Activity", MODE_PRIVATE)
         val current_jwt = prefs.getString("token", "").toString()
 
-        val call = Retrofit().service.sendProfile(current_jwt, multipartBody, requestBody)
+        val call = Retrofit().service.sendFirstProfile(current_jwt, multipartBody, requestBody)
 
         call.enqueue(object : Callback<UploadSuccess> {
             override fun onFailure(call: Call<UploadSuccess>, t: Throwable) {
