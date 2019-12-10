@@ -159,11 +159,11 @@ class SignUp1Activity : AppCompatActivity() {
 
                         val prefs = getSharedPreferences("com.example.kakaotalk_dms.ui.SignUp1Activity",MODE_PRIVATE)
                         val editor:SharedPreferences.Editor = prefs.edit()
-                        editor.putString("token",jwt)
+                        editor.putString("signUp_token",jwt)
                         editor.apply()
 
-                        val current_jwt = prefs.getString("token","")
-                        Log.d("jwt",current_jwt.toString())
+                        val signUp_jwt = prefs.getString("signUp_token","")
+                        Log.d("jwt",signUp_jwt.toString())
 
                     }
                     response.code() == 471 -> toast("이메일 인증이 완료되지 않았습니다.")
