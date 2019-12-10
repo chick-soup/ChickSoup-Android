@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_sign_up2.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,6 +30,7 @@ class SignUp2Activity : AppCompatActivity() {
 
         compelete_signup_btn.setOnClickListener {
             uploadFile()
+            startActivity<SignInActivity>()
         }
         first_profile_image.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
@@ -72,7 +74,6 @@ class SignUp2Activity : AppCompatActivity() {
     }
 
     fun uploadToServer(uri: String) {
-
         Log.d("uploadToServer", uri)
         val nickname = first_nick.text.toString()
         val file = File(uri)
@@ -80,7 +81,7 @@ class SignUp2Activity : AppCompatActivity() {
             RequestBody.create(MediaType.parse("multipart/form-data"), file)
         val multipartBody: MultipartBody.Part =
             MultipartBody.Part.createFormData("file", file.name, requestFile)
-        val requestBody: RequestBody = RequestBody.create(MediaType.parse("text/plain"),first_nick.text.toString())
+        val requestBody: RequestBody = RequestBody.create(MediaType.parse("text/plain"),nickname)
 
         Log.d("requestFile", "$multipartBody | $requestBody" )
         val prefs =
