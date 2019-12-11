@@ -94,18 +94,6 @@
             app:layout_constraintGuide_percent="0.12" />
 
         <ImageView
-            android:id="@+id/friend_search"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:src="@drawable/ic_search_black_24dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline129"
-            app:layout_constraintEnd_toStartOf="@+id/guideline131"
-            app:layout_constraintStart_toStartOf="@+id/guideline130"
-            app:layout_constraintTop_toTopOf="@+id/guideline119"
-            app:layout_constraintVertical_bias="0.2"
-            app:showAsAction="always" />
-
-        <ImageView
             android:id="@+id/id_search"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -117,18 +105,11 @@
             app:layout_constraintVertical_bias="0.75" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline130"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.74" />
-
-        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline131"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.83" />
+            app:layout_constraintGuide_begin="313dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

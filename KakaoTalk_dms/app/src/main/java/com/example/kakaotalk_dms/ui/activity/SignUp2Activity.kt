@@ -8,7 +8,9 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.kakaotalk_dms.*
+import com.example.kakaotalk_dms.R
+import com.example.kakaotalk_dms.Retrofit
+import com.example.kakaotalk_dms.UploadSuccess
 import kotlinx.android.synthetic.main.activity_sign_up2.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
