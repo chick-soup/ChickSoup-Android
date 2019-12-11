@@ -22,5 +22,12 @@ class UtilClass {
             editor.putString("token",token)
             editor.apply()
         }
+        fun clearToken(context: Context){
+            if(pref == null) pref = context.getSharedPreferences("chick_soup", MODE_PRIVATE)
+            val editor:SharedPreferences.Editor = pref!!.edit()
+            editor.clear()
+            editor.apply()
+
+        }
     }
 }
