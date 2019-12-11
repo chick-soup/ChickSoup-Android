@@ -88,7 +88,7 @@ class SignUp2Activity : AppCompatActivity() {
         Log.d("requestFile", "$multipartBody | $requestBody" )
         val prefs =
             getSharedPreferences("com.example.kakaotalk_dms.ui.SignUp1Activity", MODE_PRIVATE)
-        val current_jwt = prefs.getString("token", "").toString()
+        val current_jwt = prefs.getString("signUp_token", "").toString()
 
         val call = Retrofit().service.sendFirstProfile(current_jwt, multipartBody, requestBody)
 
