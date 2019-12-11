@@ -1,77 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#CCFFFFFF"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="128dp"
+        android:layout_height="38dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="2dp"
+        android:text="Chick Soup"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/clipboard"
+        android:layout_width="198dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="185dp"
+        android:layout_marginEnd="109dp"
+        android:layout_marginBottom="21dp"
+        android:autoLink="all"
+        android:gravity="center"
+        android:linksClickable="false"
+        android:selectAllOnFocus="false"
+        android:text="@string/your_string_here"
+        android:textColor="#3B1C1C"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/checkId_cancel_btn"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="right"
+        android:layout_marginStart="284dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="-5dp"
+        app:srcCompat="@drawable/ic_cancel_black_24dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="16dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="48dp"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Chick Soup"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="아이디 변경"
+            android:text="아이디 확인"
             android:textColor="#000000"
-            android:textSize="32sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/newId_InputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/checkId"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
-            android:textColorHint="#000000"
-            app:boxCornerRadiusBottomEnd="35dp"
-            app:boxCornerRadiusBottomStart="35dp"
-            app:boxCornerRadiusTopEnd="35dp"
-            app:boxCornerRadiusTopStart="35dp"
-            app:boxStrokeColor="#FEE100"
-            app:boxStrokeWidth="2dp"
-            app:hintTextAppearance="@style/TextAppearance.AppCompat">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/search_id_editText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="새 아이디를 입력하세요"
-                android:inputType="text"
-                android:textCursorDrawable="@android:color/black"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/newId_change_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp"
-            android:backgroundTint="#3B1C1C"
             android:gravity="center"
-            android:text="ID 변경"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            app:cornerRadius="8dp" />
+            android:text="아이디"
+
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>
