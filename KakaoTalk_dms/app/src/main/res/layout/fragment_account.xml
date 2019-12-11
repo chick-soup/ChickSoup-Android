@@ -22,8 +22,8 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:alpha="0.7"
-                android:background="@drawable/splashimage"
-                app:layout_constraintBottom_toTopOf="@+id/guideline83"
+                android:background="@drawable/real_backimage"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -39,19 +39,20 @@
                 app:layout_constraintEnd_toStartOf="@+id/guideline89"
                 app:layout_constraintStart_toStartOf="@+id/guideline85"
                 app:layout_constraintTop_toTopOf="@+id/guideline126"
-                app:riv_corner_radius="1000dp" />
+                app:riv_corner_radius="50dp" />
 
             <ImageView
                 android:id="@+id/account_setting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/guideline90"
                 app:layout_constraintEnd_toStartOf="@+id/guideline82"
-                app:layout_constraintHorizontal_bias="0.541"
+                app:layout_constraintHorizontal_bias="0.516"
                 app:layout_constraintStart_toStartOf="@+id/guideline64"
                 app:layout_constraintTop_toTopOf="@+id/guideline59"
-                app:layout_constraintVertical_bias="0.666"
-                app:srcCompat="@drawable/ic_settings_black_24dp" />
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/ic_mode_edit_black_24dp" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline57"
@@ -85,9 +86,12 @@
                 android:id="@+id/account_name"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginTop="4dp"
                 android:gravity="center"
                 android:text="이름"
-                android:textSize="17sp"
+                android:textColor="#ffffff"
+                android:textSize="24sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/guideline87"
                 app:layout_constraintEnd_toStartOf="@+id/guideline82"
                 app:layout_constraintStart_toStartOf="@+id/guideline81"
@@ -98,28 +102,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.35" />
+                app:layout_constraintGuide_percent="0.32" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline86"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.79" />
+                app:layout_constraintGuide_percent="0.75" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline87"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.84" />
+                app:layout_constraintGuide_percent="0.8" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline89"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.65" />
+                app:layout_constraintGuide_percent="0.68" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline90"
@@ -132,6 +136,7 @@
                 android:layout_width="80dp"
                 android:layout_height="34dp"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:text="프로필 수정"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline82"
@@ -175,17 +180,25 @@
 
             <TextView
                 android:id="@+id/account_message"
-                android:layout_width="260dp"
-                android:layout_height="85dp"
+                android:layout_width="257dp"
+                android:layout_height="31dp"
                 android:gravity="center"
-                android:text="상태메세지를 입력합시다아ㅏ아아아아아"
+                android:text="상태메세지"
                 android:textColor="#ffffff"
-                android:textSize="24sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/guideline57"
+                app:layout_constraintBottom_toTopOf="@+id/guideline59"
                 app:layout_constraintEnd_toStartOf="@+id/guideline82"
                 app:layout_constraintStart_toStartOf="@+id/guideline81"
-                app:layout_constraintTop_toTopOf="@+id/guideline88" />
+                app:layout_constraintTop_toBottomOf="@+id/account_name" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCFFFFFF"
+                app:layout_constraintBottom_toTopOf="@+id/guideline59"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline88"
@@ -213,12 +226,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.62" />
+                app:layout_constraintGuide_percent="0.55" />
 
             <ImageView
                 android:id="@+id/account_chat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
                 android:layout_marginTop="8dp"
                 android:src="@drawable/ic_chat_black_24dp"
                 app:layout_constraintBottom_toTopOf="@+id/guideline90"
@@ -234,7 +247,8 @@
                 android:layout_height="34dp"
                 android:layout_marginTop="4dp"
                 android:gravity="center"
-                android:text="나와 1대1 채팅"
+                android:textColor="#ffffff"
+                android:text="나와의 채팅"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline55"
                 app:layout_constraintHorizontal_bias="0.588"
