@@ -1,20 +1,14 @@
 package com.example.kakaotalk_dms.ui.fragment
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.example.kakaotalk_dms.R
-import com.example.kakaotalk_dms.model.SearchFriendUser
 import com.example.kakaotalk_dms.model.SearchUserId
-import com.example.kakaotalk_dms.ui.adapter.IdAdapter
-import com.example.kakaotalk_dms.ui.adapter.SearchFriendAdapter
-import kotlinx.android.synthetic.main.fragment_search_friend.*
+import com.example.kakaotalk_dms.ui.adapter.SearchIdAdapter
 import kotlinx.android.synthetic.main.fragment_search_id.*
 
 class SearchIdFragment : Fragment() {
@@ -30,7 +24,7 @@ class SearchIdFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val newIdAdapter = IdAdapter()
+        val newIdAdapter = SearchIdAdapter()
         searchId_list.adapter  = newIdAdapter
 
         val lm = LinearLayoutManager(this.context!!)

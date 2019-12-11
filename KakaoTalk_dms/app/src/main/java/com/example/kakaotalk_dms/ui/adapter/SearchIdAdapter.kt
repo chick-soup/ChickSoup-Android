@@ -3,14 +3,15 @@ package com.example.kakaotalk_dms.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kakaotalk_dms.R
-import com.example.kakaotalk_dms.model.BanUser
 import com.example.kakaotalk_dms.model.SearchUserId
 
-class IdAdapter:RecyclerView.Adapter<IdAdapter.Holder>(){
+class SearchIdAdapter : RecyclerView.Adapter<SearchIdAdapter.Holder>(){
+
     private val idList = ArrayList<SearchUserId>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -30,17 +31,19 @@ class IdAdapter:RecyclerView.Adapter<IdAdapter.Holder>(){
         notifyDataSetChanged()
     }
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        private val new_id = itemView.findViewById<TextView>(R.id.new_id)
-        private val new_image = itemView.findViewById<ImageView>(R.id.new_image)
+
+        private val newId = itemView.findViewById<TextView>(R.id.new_id)
+        private val newImage = itemView.findViewById<ImageView>(R.id.new_image)
 
         fun connect(data: SearchUserId){
             if(data.image != ""){
-                new_image?.setImageResource(R.drawable.kakaotalk_logo)
+                newImage?.setImageResource(R.drawable.kakaotalk_logo)
             }
             else
-                new_image?.setImageResource((R.mipmap.ic_launcher))
+                newImage?.setImageResource((R.mipmap.ic_launcher))
 
-            new_id.text = data.nick
+            newId.text = data.nick
         }
     }
+
 }
