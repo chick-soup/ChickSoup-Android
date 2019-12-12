@@ -35,6 +35,9 @@ interface RetrofitNetwork {
                    @Query("nickname") nick:String,
                    @Query("status_message") message:String): Call<Profile>
 
+    @GET("/refresh")
+    fun getRefreshToken(@Header("Authorization") authorization: String):Call<SignIn>
+
     @Multipart
     @PUT("/users/my/profile")
     fun changeProfile(@Header("Authorization") authorization: String,
