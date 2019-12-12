@@ -21,14 +21,14 @@ class SignInActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signin)
 
         login_btn.setOnClickListener {
-            signin_post()
+            signInPost()
         }
         go_signup.setOnClickListener {
             startActivity<SignUp1Activity>()
         }
 
     }
-    fun signin_post(){
+    private fun signInPost(){
         val userEmail = signin_id.text.toString()
         val userPassword = signin_password.text.toString()
 
@@ -41,11 +41,11 @@ class SignInActivity : AppCompatActivity() {
 
         call.enqueue(object: Callback<SignIn>{
             override fun onFailure(call: Call<SignIn>, t: Throwable) {
-                Log.e("signin_fail",t.message.toString())
+                Log.e("signIn_fail",t.message.toString())
             }
 
             override fun onResponse(call: Call<SignIn>, response: Response<SignIn>) {
-                Log.d("signin_success",response.code().toString())
+                Log.d("signInSuccess",response.code().toString())
 
                 if(response.code() == 200) {
                     toast("로그인 성공")
@@ -53,6 +53,10 @@ class SignInActivity : AppCompatActivity() {
                     val jwt: String = response.body()!!.userToken
                     UtilClass.saveToken(applicationContext,jwt)
 
+                    val refresh:String = response.body()!!.userRefreshToken
+
+                    UtilClass.saveRefreshToken(applicationContext,refresh)
+                    Log.d("refresh",UtilClass.getRefreshToken(applicationContext))
                 }
             }
 

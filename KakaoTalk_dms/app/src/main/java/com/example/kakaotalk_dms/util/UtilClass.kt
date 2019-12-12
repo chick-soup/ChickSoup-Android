@@ -22,6 +22,16 @@ class UtilClass {
             editor.putString("token",token)
             editor.apply()
         }
+        fun saveRefreshToken(context: Context, token: String){
+            if(pref == null) pref = context.getSharedPreferences("refresh_toekn", MODE_PRIVATE)
+            val editor:SharedPreferences.Editor = pref!!.edit()
+            editor.putString("refreshToken",token)
+            editor.apply()
+        }
+        fun getRefreshToken(context: Context): String {
+            if(pref == null) pref = context.getSharedPreferences("refresh_token",MODE_PRIVATE)
+            return pref?.getString("refreshToken","").toString()
+        }
         fun clearToken(context: Context){
             if(pref == null) pref = context.getSharedPreferences("chick_soup", MODE_PRIVATE)
             val editor:SharedPreferences.Editor = pref!!.edit()
