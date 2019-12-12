@@ -38,10 +38,9 @@ class SignUp1Activity : AppCompatActivity() {
         sendEmail_btn.setOnClickListener {
             val isEmailError: Boolean = emailError(signup_id.text.toString())
             if (isEmailError)
-                signup_post()
+                signUpPost()
         }
         sendCode_btn.setOnClickListener {
-            Log.d("ssddddddddddsdfsdfsdf", "aaa")
             auth_code()
         }
     }
@@ -66,7 +65,7 @@ class SignUp1Activity : AppCompatActivity() {
             signup_passwordInputLayout.error = "      비밀번호를 입력하세요"
             false
         } else {
-            if (signup_password.equals(password_check)) {
+            if (signup_password == password_check) {
                 check_pw.error = ""
                 true
             } else {
@@ -77,13 +76,13 @@ class SignUp1Activity : AppCompatActivity() {
     }
 
     fun isIdCorrect(auth_code: String): Boolean {
-        return when {
-            auth_code.equals("200") -> {
+        return when (auth_code) {
+            "200" -> {
                 toast("이메일 인증코드 발송 ")
                 Log.d("success", auth_code)
                 true
             }
-            auth_code.equals("470") -> {
+            "470" -> {
                 toast("이미 인증이 완료된 이메일 입니다.")
                 false
             }
@@ -91,8 +90,8 @@ class SignUp1Activity : AppCompatActivity() {
         }
     }
 
-    private fun signup_post() {
-        Log.d("signup_post","실행")
+    private fun signUpPost() {
+        Log.d("signUpPost","실행")
         val userEmail: String = signup_id.text.toString()
         val call: Call<SignUp1> = Retrofit().service.sendEmail(
             SignUp1(
@@ -104,7 +103,6 @@ class SignUp1Activity : AppCompatActivity() {
             override fun onFailure(call: Call<SignUp1>, t: Throwable) {
                 Log.e("fail", t.message.toString())
             }
-
             override fun onResponse(call: Call<SignUp1>, response: Response<SignUp1>) {
                 isIdCorrect(response.code().toString())
                 Log.d("onResponse",response.code().toString())
@@ -114,11 +112,11 @@ class SignUp1Activity : AppCompatActivity() {
 
     private fun auth_code() {
         val userEmail: String = signup_id.text.toString()
-        val auth_code: String = check_code.text.toString()
+        val authCode: String = check_code.text.toString()
         val call: Call<SignUp1> = Retrofit().service.sendCode(
             SignUp1(
                 userEmail,
-                auth_code,
+                authCode,
                 ""
             )
         )
@@ -177,8 +175,8 @@ class SignUp1Activity : AppCompatActivity() {
                         editor.putString("signUp_token",jwt)
                         editor.apply()
 
-                        val signUp_jwt = prefs.getString("signUp_token","")
-                        Log.d("jwt",signUp_jwt.toString())
+                        val signUpJwt = prefs.getString("signUp_token","")
+                        Log.d("jwt",signUpJwt.toString())
 
                     }
                     response.code() == 471 -> toast("이메일 인증이 완료되지 않았습니다.")
