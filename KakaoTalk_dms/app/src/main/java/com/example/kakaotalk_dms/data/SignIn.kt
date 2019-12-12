@@ -7,8 +7,13 @@ class SignIn(
     @SerializedName("email")
     val nickname:String,
     @SerializedName("password")
-    val password:String
+    val password:String,
+    @SerializedName("minute")
+    val minute:Int = 60
 ) {
     @SerializedName("access_token")
     lateinit var userToken:String
+
+    @SerializedName("refresh_token")
+    lateinit var userRefreshToken:String
 }
