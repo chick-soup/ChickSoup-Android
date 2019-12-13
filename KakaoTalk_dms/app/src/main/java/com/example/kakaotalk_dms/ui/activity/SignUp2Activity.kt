@@ -2,7 +2,6 @@ package com.example.kakaotalk_dms.ui.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -23,7 +22,7 @@ import java.io.File
 
 class SignUp2Activity : AppCompatActivity() {
 
-    val GET_FIRST_IMAGE = 0
+    private val GET_FIRST_IMAGE = 0
     private var profileImageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,17 +30,18 @@ class SignUp2Activity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up2)
 
         compelete_signup_btn.setOnClickListener {
-            uploadFile()
+            Log.d("profileImageUri",profileImageUri.toString())
+            uploadToServer(getPathFromUri(profileImageUri))
             startActivity<SignInActivity>()
         }
         first_profile_image.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
-            intent.setDataAndType(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                "image/*"
-            )
+            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            "image/*")
             startActivityForResult(intent, GET_FIRST_IMAGE)
+
         }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -52,55 +52,66 @@ class SignUp2Activity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    fun uploadFile() {
-        Log.d("uploadFile",profileImageUri.toString())
-        if (profileImageUri != null) {
-            val fileUri: String = realPath(profileImageUri!!)
-            uploadToServer(fileUri)
+//    private fun uploadFile(profileImageUri:Uri) {
+//        Log.d("uploadFile",profileImageUri.toString())
+//        val fileUri: String = getPathFromUri(profileImageUri)
+//        uploadToServer(fileUri)
+//
+//        Log.d("profileImageUri",profileImageUri.toString())
+//        Log.d("fileUri",fileUri)
+//    }
+//
+//    @SuppressLint("Recycle")
+//    fun realPath(contentUri: Uri): String {
+//        val cursor: Cursor? = this.contentResolver.query(contentUri, null, null, null, null)
+//        return if (cursor == null) {
+//            contentUri.path!!
+//        } else {
+//            cursor.moveToFirst()
+//            val idx: Int = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
+//            cursor.getString(idx)
+//        }
+//    }
+@SuppressLint("Recycle")
+fun getPathFromUri(uri: Uri?): String {
+    val cursor = contentResolver.query(uri!!,null,null,null,null)
+    cursor?.moveToNext()
+    val path:String = cursor!!.getString(cursor.getColumnIndex("_data"))
+    cursor.close()
 
-            Log.d("profileImageUri",profileImageUri.toString())
-            Log.d("fileUri",fileUri)
-        }
-    }
+    Log.d("path",path)
+    return path
+}
 
-    @SuppressLint("Recycle")
-    fun realPath(contentUri: Uri): String {
-        val cursor: Cursor? = this.contentResolver.query(contentUri, null, null, null, null)
-        return if (cursor == null) {
-            contentUri.path!!
-        } else {
-            cursor.moveToFirst()
-            val idx: Int = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
-            cursor.getString(idx)
-        }
-    }
-
-    fun uploadToServer(uri: String) {
-        Log.d("uploadToServer", uri)
+    private fun uploadToServer(filePath: String) {
+        Log.d("filePath",filePath)
         val nickname = first_nick.text.toString()
-        val file = File(uri)
+        val file = File(filePath)
         val requestFile: RequestBody =
             RequestBody.create(MediaType.parse("multipart/form-data"), file)
         val multipartBody: MultipartBody.Part =
-            MultipartBody.Part.createFormData("file", file.name, requestFile)
-        val requestBody: RequestBody = RequestBody.create(MediaType.parse("text/plain"),nickname)
+            MultipartBody.Part.createFormData("user_image", file.name, requestFile)
+        val requestBody: RequestBody =
+            RequestBody.create(MediaType.parse("text/plain"), nickname)
 
-        Log.d("requestFile", "$multipartBody | $requestBody" )
+        Log.d("requestBody", requestBody.toString())
+        Log.d("multipart", multipartBody.toString())
         val prefs =
             getSharedPreferences("com.example.kakaotalk_dms.ui.SignUp1Activity", MODE_PRIVATE)
-        val current_jwt = prefs.getString("signUp_token", "").toString()
+        val currentJwt = prefs.getString("signUp_token", "").toString()
 
-        val call = Retrofit().service.sendFirstProfile(current_jwt, multipartBody, requestBody)
+        val call = Retrofit().service.sendFirstProfile(currentJwt, multipartBody, requestBody)
 
         call.enqueue(object : Callback<UploadSuccess> {
             override fun onFailure(call: Call<UploadSuccess>, t: Throwable) {
-                Log.e("uploadFail",t.message.toString())
+                Log.e("uploadFail", t.message.toString())
             }
 
-            override fun onResponse(call: Call<UploadSuccess>, response: Response<UploadSuccess>) {
-                Log.d("successLoad",response.code().toString())
+            override fun onResponse(call: Call<UploadSuccess>,response: Response<UploadSuccess> ) {
+                Log.d("successLoad", response.code().toString())
             }
 
         })
     }
 }
+
