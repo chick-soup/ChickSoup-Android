@@ -34,12 +34,12 @@
                 android:id="@+id/account_image"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/setprofile"
                 app:layout_constraintBottom_toTopOf="@+id/guideline86"
                 app:layout_constraintEnd_toStartOf="@+id/guideline89"
                 app:layout_constraintStart_toStartOf="@+id/guideline85"
                 app:layout_constraintTop_toTopOf="@+id/guideline126"
-                app:riv_corner_radius="50dp" />
+                app:riv_corner_radius="20dp" />
 
             <ImageView
                 android:id="@+id/account_setting"
