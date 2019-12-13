@@ -21,7 +21,9 @@ interface RetrofitNetwork {
 
     @Multipart
     @POST("/signup/profile")
-    fun sendFirstProfile(@Header("Authorization") authorization: String, @Part file: MultipartBody.Part, @Part("nickname") nick:RequestBody): Call<UploadSuccess>
+    fun sendFirstProfile(@Header("Authorization") authorization: String,
+                         @Part file: MultipartBody.Part ,
+                         @Part("nickname") nick:RequestBody): Call<UploadSuccess>
 
     @POST("/login")
     fun sendLogin(@Body signIn: SignIn):Call<SignIn>
