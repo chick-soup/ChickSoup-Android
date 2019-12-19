@@ -1,12 +1,18 @@
 package com.example.kakaotalk_dms.ui.activity
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.database.Cursor
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.kakaotalk_dms.R
 import com.example.kakaotalk_dms.Retrofit
 import com.example.kakaotalk_dms.UploadSuccess
@@ -35,11 +41,14 @@ class SignUp2Activity : AppCompatActivity() {
             startActivity<SignInActivity>()
         }
         first_profile_image.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-            "image/*")
-            startActivityForResult(intent, GET_FIRST_IMAGE)
-
+            if(giveGrant()) {
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.setDataAndType(
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    "image/*"
+                )
+                startActivityForResult(intent, GET_FIRST_IMAGE)
+            }
         }
 
     }
@@ -50,6 +59,31 @@ class SignUp2Activity : AppCompatActivity() {
             first_profile_image.setImageURI(profileImageUri)
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    fun giveGrant(): Boolean{
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 100)
+            }
+        }
+
+        return true
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            100 -> {
+                if(grantResults.isNotEmpty()) {
+                    for((i, permission) in permissions.withIndex()) {
+                        if(grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                            Log.i("TAG", "The user has denied to $permission")
+                            Log.i("TAG", "I can't work for you anymore then. ByeBye!")
+                        }
+                    }
+                }
+            }
+        }
     }
 
 //    private fun uploadFile(profileImageUri:Uri) {
@@ -74,13 +108,15 @@ class SignUp2Activity : AppCompatActivity() {
 //    }
 @SuppressLint("Recycle")
 fun getPathFromUri(uri: Uri?): String {
-    val cursor = contentResolver.query(uri!!,null,null,null,null)
-    cursor?.moveToNext()
-    val path:String = cursor!!.getString(cursor.getColumnIndex("_data"))
-    cursor.close()
-
-    Log.d("path",path)
-    return path
+    val cursor: Cursor? = this.contentResolver.query(uri!!, null, null, null, null)
+    return if (cursor == null) {
+        uri.path!!
+    } else {
+        cursor.moveToFirst()
+        val idx: Int = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
+        Log.e("text", cursor.getString(idx))
+        cursor.getString(idx)
+    }
 }
 
     private fun uploadToServer(filePath: String) {
