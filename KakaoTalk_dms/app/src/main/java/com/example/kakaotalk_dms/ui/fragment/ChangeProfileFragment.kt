@@ -4,16 +4,22 @@ import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-
 import com.example.kakaotalk_dms.R
-import kotlinx.android.synthetic.main.activity_signin.*
+import com.example.kakaotalk_dms.Retrofit
+import com.example.kakaotalk_dms.util.UtilClass
 import kotlinx.android.synthetic.main.fragment_change_profile.*
+import okhttp3.MediaType
+import retrofit2.Callback
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Response
 
 class ChangeProfileFragment : Fragment() {
 
@@ -54,11 +60,7 @@ class ChangeProfileFragment : Fragment() {
             startActivityForResult(intent, GET_BACK_IMAGE)
         }
         change_profile_check_btn.setOnClickListener {
-
-            val fragment: Fragment = AccountFragment()
-            val fm: FragmentManager? = fragmentManager
-            val transaction:FragmentTransaction = fm!!.beginTransaction()
-            transaction.replace(R.id.main_frame,fragment).addToBackStack(null).setCustomAnimations(R.anim.fade_in,R.anim.fade_out).commit()
+            changeProfile()
         }
     }
 
@@ -70,6 +72,33 @@ class ChangeProfileFragment : Fragment() {
             val backImageUri: Uri = data.data!!
             change_profile_backimage.setImageURI(backImageUri)
         }
+    }
+    fun changeProfile() {
+        val ifMobile = "mobile"
+        val where:RequestBody =
+            RequestBody.create(MediaType.parse("text/plain"),ifMobile)
+        val nickname: RequestBody =
+            RequestBody.create(MediaType.parse("text/plain"),change_nick_editText.text.toString())
+        val statusMessage:RequestBody =
+            RequestBody.create(MediaType.parse("text/plain"),change_message_editText.text.toString())
+        val token = UtilClass.getToken(activity!!.applicationContext)
+        Log.d("changeProfile",token)
+        val call = Retrofit().service.changeProfile(token,nickname,statusMessage,where)
+        call.enqueue(object :Callback<Void>{
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.d("onfailure",t.message)
+            }
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if(response.code() == 200){
+                    val fragment: Fragment = AccountFragment()
+                    val fm: FragmentManager? = fragmentManager
+                    val transaction: FragmentTransaction = fm!!.beginTransaction()
+                    transaction.replace(R.id.main_frame, fragment).addToBackStack(null)
+                        .setCustomAnimations(R.anim.fade_in, R.anim.fade_out).commit()
+                }
+            }
+
+        } )
     }
 }
 
