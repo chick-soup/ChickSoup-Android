@@ -38,6 +38,7 @@ class BanAdapter:RecyclerView.Adapter<BanAdapter.Holder>() {
             }
             else ban_friends_image?.setImageResource((R.mipmap.ic_launcher))
             ban_friends_nick.text = data.nick
+
         }
     }
 }

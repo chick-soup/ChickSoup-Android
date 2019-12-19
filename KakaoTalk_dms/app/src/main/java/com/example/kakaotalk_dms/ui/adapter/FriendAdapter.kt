@@ -14,7 +14,6 @@ class FriendAdapter : RecyclerView.Adapter<FriendAdapter.Holder>() {
     private val userList = ArrayList<User>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_friend, parent, false)
         return Holder(view)
