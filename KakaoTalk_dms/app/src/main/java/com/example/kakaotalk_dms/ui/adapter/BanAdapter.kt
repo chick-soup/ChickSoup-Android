@@ -36,9 +36,7 @@ class BanAdapter:RecyclerView.Adapter<BanAdapter.Holder>() {
             if(data.image != ""){
                 ban_friends_image?.setImageResource(R.drawable.kakaotalk_logo)
             }
-            else
-                ban_friends_image?.setImageResource((R.mipmap.ic_launcher))
-
+            else ban_friends_image?.setImageResource((R.mipmap.ic_launcher))
             ban_friends_nick.text = data.nick
         }
     }
