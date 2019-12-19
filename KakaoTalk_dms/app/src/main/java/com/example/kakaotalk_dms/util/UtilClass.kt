@@ -37,7 +37,6 @@ class UtilClass {
             val editor:SharedPreferences.Editor = pref!!.edit()
             editor.clear()
             editor.apply()
-
         }
     }
 }
