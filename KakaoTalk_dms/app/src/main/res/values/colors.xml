@@ -8,4 +8,5 @@
     <color name="gray">#E4E4E4</color>
     <color name="background">#FEE100</color>
     <color name="brown">#3B1C1C</color>
+    <color name="chatting_back_color">#B2C7D9</color>
 </resources>
