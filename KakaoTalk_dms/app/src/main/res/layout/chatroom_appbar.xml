@@ -1,10 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/chatroom_bar"
-    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:minHeight="?attr/actionBarSize"
-    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    android:background="?attr/colorPrimary"/>
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.ChatRoomActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/chatroom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/chatting_back_color" >
+
+            <ImageView
+                android:id="@+id/chat_back_btn"
+                android:src="@drawable/arrow_right"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"/>
+            <TextView
+                android:text="채팅방"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="22sp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+    <include layout = "@layout/activity_chat_content"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

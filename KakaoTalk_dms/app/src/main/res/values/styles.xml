@@ -6,10 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">#FFEB3B</item>
         <item name="colorAccent">@color/colorAccent</item>
-
-        <!-- No Title Bar-->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
+        <!-- No Title Bar-->
     </style>
 
     <style name="IntroTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -21,7 +21,9 @@
             true : Titlebar x
             false : Titlebar o
         -->
-        <item name="windowNoTitle">false</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
         <!-- 투명정도를 나타내는 색-->
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>

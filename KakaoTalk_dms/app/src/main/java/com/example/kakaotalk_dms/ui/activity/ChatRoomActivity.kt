@@ -2,9 +2,13 @@ package com.example.kakaotalk_dms.ui.activity
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.kakaotalk_dms.R
@@ -14,15 +18,16 @@ import org.jetbrains.anko.toast
 
 
 class ChatRoomActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
-    val drawerlayout = findViewById<DrawerLayout>(R.id.dl_main_drawer_root)
-    val navigationView = findViewById<NavigationView>(R.id.nv_main_navigation_root)
-    val drawerToggle:ActionBarDrawerToggle?= null
+    private val drawerLayout: DrawerLayout? = null
+    private val drawerToggle:ActionBarDrawerToggle?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_room)
 
+        setSupportActionBar(chatroom_bar)
+        val navigationView = findViewById<NavigationView>(R.id.nv_main_navigation_root)
+        navigationView.setNavigationItemSelectedListener(this)
         initLayout()
     }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -30,13 +35,8 @@ class ChatRoomActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             R.id.menuitem1 -> toast("1번 클릭")
             R.id.menuitem2 -> toast("2번 클릭")
         }
-        drawerlayout.closeDrawer(GravityCompat.END)
+        drawerLayout?.closeDrawer(GravityCompat.END)
         return false
-    }
-
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-        drawerToggle?.syncState()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -46,20 +46,27 @@ class ChatRoomActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        drawerToggle?.onConfigurationChanged(newConfig)
-    }
-
     private fun initLayout(){
-        setSupportActionBar(chatroom_bar)
-        supportActionBar?.title = "채팅방"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.mipmap.ic_launcher)
+        Log.d("initLayout","넘어왔네요")
+        val drawerLayout = findViewById<DrawerLayout>(R.id.dl_main_drawer_root)
+        val navigationView = findViewById<NavigationView>(R.id.nv_main_navigation_root)
 
-        val drawerToggle = ActionBarDrawerToggle(this,drawerlayout,chatroom_bar,
-            R.string.drawer_open,R.string.drawer_close)
-        drawerlayout.addDrawerListener(drawerToggle)
+        val chatroom_bar = findViewById<Toolbar>(R.id.chatroom_bar)
+        val ab: ActionBar? = supportActionBar
+        ab?.title = null
+//        ab?.setDisplayUseLogoEnabled(true)
+//        ab?.setDisplayShowHomeEnabled(true)
+        ab?.setDisplayHomeAsUpEnabled(true)
+        ab?.setHomeAsUpIndicator(R.drawable.bar_icon)
+
+
+        val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,chatroom_bar,
+            R.string.drawer_open, R.string.drawer_close)
+        drawerLayout.addDrawerListener(drawerToggle)
         navigationView.setNavigationItemSelectedListener(this)
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.chatroom_menu, menu)
+        return true
     }
 }
