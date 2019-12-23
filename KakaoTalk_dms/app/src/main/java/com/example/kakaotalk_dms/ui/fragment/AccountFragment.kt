@@ -60,9 +60,10 @@ class AccountFragment : Fragment() {
             }
 
             override fun onResponse(call: Call<Profile>, response: Response<Profile>) {
+                Log.d("AccountCode",response.code().toString())
                 if(response.code() == 200){
-                    account_name.setText(response.body()?.userNick)
-                    account_message.setText(response.body()?.userMessage)
+                    account_name.text = response.body()?.userNick
+                    account_message.text = response.body()?.userMessage
 
                     Log.d("imageId",response.body()?.imageId.toString())
                 }
