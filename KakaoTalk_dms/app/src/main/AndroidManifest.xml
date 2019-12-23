@@ -18,7 +18,8 @@
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustResize"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
-        <activity android:name=".ui.activity.ChatRoomActivity"></activity>
+        <activity android:name=".ui.activity.ChatContentActivity"/>
+        <activity android:name=".ui.activity.ChatRoomActivity" />
         <activity android:name=".ui.activity.SignUp2Activity" />
         <activity android:name=".ui.activity.SignUp1Activity" />
         <activity android:name=".ui.activity.SignInActivity" />
