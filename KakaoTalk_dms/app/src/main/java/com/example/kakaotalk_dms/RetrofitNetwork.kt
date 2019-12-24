@@ -43,5 +43,7 @@ interface RetrofitNetwork {
     @Multipart
     @PUT("/users/my/profile")
     fun changeProfile(@Header("Authorization") authorization: String,
-                      @Part("nickname") nick:RequestBody): Call<Profile>
+                      @Part("nickname") nick:RequestBody,
+                      @Part("status_message")message: RequestBody,
+                      @Part("where")mobile:RequestBody): Call<Void>
 }

@@ -18,7 +18,6 @@ class FriendAdapter : RecyclerView.Adapter<FriendAdapter.Holder>() {
             LayoutInflater.from(parent.context).inflate(R.layout.item_friend, parent, false)
         return Holder(view)
     }
-
     override fun getItemCount(): Int = userList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {

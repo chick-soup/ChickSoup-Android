@@ -38,6 +38,8 @@
             android:layout_height="60dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:paddingTop="16dp"
+            android:background="@null"
             android:hint="id"
             android:inputType="textEmailAddress"
             android:textCursorDrawable="@color/background" />
@@ -58,6 +60,8 @@
             android:id="@+id/signin_password"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:paddingTop="16dp"
+            android:background="@null"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:hint="password"
