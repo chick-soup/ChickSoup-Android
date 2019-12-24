@@ -91,10 +91,7 @@ class ChangeProfileFragment : Fragment() {
         val call = Retrofit().service.changeProfile(token, nickname, statusMessage, where)
         call.enqueue(object : Callback<Void> {
             override fun onFailure(call: Call<Void>, t: Throwable) {
-<<<<<<< HEAD
                 Log.d("onfailure", t.message)
-=======
->>>>>>> Chatting
             }
 
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
