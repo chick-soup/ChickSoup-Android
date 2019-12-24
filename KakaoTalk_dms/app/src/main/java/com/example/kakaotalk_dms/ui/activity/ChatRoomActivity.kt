@@ -1,10 +1,10 @@
 package com.example.kakaotalk_dms.ui.activity
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.WindowManager
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -19,16 +19,20 @@ import org.jetbrains.anko.toast
 
 class ChatRoomActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val drawerLayout: DrawerLayout? = null
-    private val drawerToggle:ActionBarDrawerToggle?= null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_room)
-
         setSupportActionBar(chatroom_bar)
-        val navigationView = findViewById<NavigationView>(R.id.nv_main_navigation_root)
-        navigationView.setNavigationItemSelectedListener(this)
         initLayout()
+
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+        chat_back_btn.setOnClickListener {
+            finish()
+        }
+        hamburgerIcon.setOnClickListener {
+            val drawerLayout = findViewById<DrawerLayout>(R.id.dl_main_drawer_root)
+            drawerLayout.openDrawer(GravityCompat.END)
+        }
     }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
@@ -38,35 +42,34 @@ class ChatRoomActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         drawerLayout?.closeDrawer(GravityCompat.END)
         return false
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(drawerToggle!!.onOptionsItemSelected(item)){
-            return true
+        val drawerLayout = findViewById<DrawerLayout>(R.id.dl_main_drawer_root)
+        when(item.itemId){
+            R.id.hamburgerIcon->{
+                Log.d("hamburger","eat")
+                drawerLayout?.openDrawer(GravityCompat.END)
+                return true
+            }
         }
-        return super.onOptionsItemSelected(item)
+        return  super.onOptionsItemSelected(item)
     }
-
     private fun initLayout(){
         Log.d("initLayout","넘어왔네요")
-        val drawerLayout = findViewById<DrawerLayout>(R.id.dl_main_drawer_root)
-        val navigationView = findViewById<NavigationView>(R.id.nv_main_navigation_root)
+        //val drawerLayout = findViewById<DrawerLayout>(R.id.dl_main_drawer_root)
 
-        val chatroom_bar = findViewById<Toolbar>(R.id.chatroom_bar)
+        //val chatroom_bar = findViewById<Toolbar>(R.id.chatroom_bar)
         val ab: ActionBar? = supportActionBar
         ab?.title = null
-//        ab?.setDisplayUseLogoEnabled(true)
-//        ab?.setDisplayShowHomeEnabled(true)
-        ab?.setDisplayHomeAsUpEnabled(true)
-        ab?.setHomeAsUpIndicator(R.drawable.bar_icon)
+        ab?.setDisplayShowCustomEnabled(true)
 
-
-        val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,chatroom_bar,
-            R.string.drawer_open, R.string.drawer_close)
-        drawerLayout.addDrawerListener(drawerToggle)
-        navigationView.setNavigationItemSelectedListener(this)
+       // val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,chatroom_bar,
+         //   R.string.drawer_open, R.string.drawer_close)
+//        drawerLayout.addDrawerListener(drawerToggle)
+//        drawerToggle.syncState()
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.chatroom_menu, menu)
         return true
     }
 }
+
