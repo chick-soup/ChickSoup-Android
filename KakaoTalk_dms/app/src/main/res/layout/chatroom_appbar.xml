@@ -18,9 +18,18 @@
 
             <ImageView
                 android:id="@+id/chat_back_btn"
+                android:layout_gravity="left"
+                android:layout_marginStart="8dp"
                 android:src="@drawable/arrow_right"
-                android:layout_width="wrap_content"
-                android:layout_height="28dp"/>
+                android:layout_width="16dp"
+                android:layout_height="22dp"/>
+            <ImageView
+                android:id="@+id/hamburgerIcon"
+                android:src="@drawable/bar_icon"
+                android:layout_gravity="right"
+                android:layout_marginRight="16dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"/>
             <TextView
                 android:text="채팅방"
                 android:textStyle="bold"
@@ -29,6 +38,7 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
     <include layout = "@layout/activity_chat_content"/>
