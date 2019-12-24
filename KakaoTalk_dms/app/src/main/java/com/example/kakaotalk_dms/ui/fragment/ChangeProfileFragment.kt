@@ -79,10 +79,10 @@ class ChangeProfileFragment : Fragment() {
             RequestBody.create(MediaType.parse("text/plain"),ifMobile)
         val nickname: RequestBody =
             RequestBody.create(MediaType.parse("text/plain"),change_nick_editText.text.toString())
-        val statusMessage: RequestBody =
+        val statusMessage:RequestBody =
             RequestBody.create(MediaType.parse("text/plain"),change_message_editText.text.toString())
         val token = UtilClass.getToken(activity!!.applicationContext)
-        Log.d("changeProfile", token)
+        Log.d("changeProfile",token)
         val call = Retrofit().service.changeProfile(token, nickname, statusMessage, where)
         call.enqueue(object : Callback<Void> {
             override fun onFailure(call: Call<Void>, t: Throwable) {
