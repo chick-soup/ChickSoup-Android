@@ -27,12 +27,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintStart_toEndOf="@+id/plus_media_btn"
         app:layout_constraintTop_toTopOf="@+id/view3"
         app:layout_constraintVertical_bias="0.5" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/plus_media_btn"
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
@@ -45,7 +45,7 @@
         app:srcCompat="@drawable/plus_media" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/chatroom_editText"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:background="@null"
@@ -58,11 +58,11 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/plus_imotion_btn"
         android:layout_width="40dp"
         android:layout_height="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintStart_toEndOf="@+id/chatroom_editText"
         app:layout_constraintTop_toTopOf="@+id/view3"
         app:layout_constraintVertical_bias="0.44"
         app:srcCompat="@drawable/imotion" />

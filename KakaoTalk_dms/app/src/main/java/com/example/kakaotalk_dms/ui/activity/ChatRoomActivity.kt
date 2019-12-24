@@ -13,11 +13,13 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.kakaotalk_dms.R
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.activity_chat_content.*
 import kotlinx.android.synthetic.main.chatroom_appbar.*
 import org.jetbrains.anko.toast
 
 
 class ChatRoomActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    private var i = 0
     private val drawerLayout: DrawerLayout? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +34,12 @@ class ChatRoomActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         hamburgerIcon.setOnClickListener {
             val drawerLayout = findViewById<DrawerLayout>(R.id.dl_main_drawer_root)
             drawerLayout.openDrawer(GravityCompat.END)
+        }
+        plus_media_btn.setOnClickListener {
+            Log.d("click","yellow")
+            i = 1 - i
+            if(i==1) plus_media_btn.setImageResource(R.drawable.yellow_plus_media)
+            else plus_media_btn.setImageResource(R.drawable.plus_media)
         }
     }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
