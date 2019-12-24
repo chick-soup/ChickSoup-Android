@@ -60,11 +60,7 @@ class ChangeProfileFragment : Fragment() {
             startActivityForResult(intent, GET_BACK_IMAGE)
         }
         change_profile_check_btn.setOnClickListener {
-
-            val fragment: Fragment = AccountFragment()
-            val fm: FragmentManager? = fragmentManager
-            val transaction:FragmentTransaction = fm!!.beginTransaction()
-            transaction.replace(R.id.main_frame,fragment).addToBackStack(null).setCustomAnimations(R.anim.fade_in,R.anim.fade_out).commit()
+            changeProfile()
         }
     }
 
@@ -77,23 +73,29 @@ class ChangeProfileFragment : Fragment() {
             change_profile_backimage.setImageURI(backImageUri)
         }
     }
-    fun changeProfile() {
+
+    private fun changeProfile() {
         val ifMobile = "mobile"
         val where: RequestBody =
-            RequestBody.create(MediaType.parse("text/plain"),ifMobile)
+
+            RequestBody.create(MediaType.parse("text/plain"), ifMobile)
         val nickname: RequestBody =
-            RequestBody.create(MediaType.parse("text/plain"),change_nick_editText.text.toString())
-        val statusMessage:RequestBody =
-            RequestBody.create(MediaType.parse("text/plain"),change_message_editText.text.toString())
+            RequestBody.create(MediaType.parse("text/plain"), change_nick_editText.text.toString())
+        val statusMessage: RequestBody =
+            RequestBody.create(
+                MediaType.parse("text/plain"),
+                change_message_editText.text.toString()
+            )
         val token = UtilClass.getToken(activity!!.applicationContext)
-        Log.d("changeProfile",token)
-        val call = Retrofit().service.changeProfile(token,nickname,statusMessage,where)
-        call.enqueue(object :Callback<Void>{
+        Log.d("changeProfile", token)
+        val call = Retrofit().service.changeProfile(token, nickname, statusMessage, where)
+        call.enqueue(object : Callback<Void> {
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                Log.d("onfailure",t.message)
+                Log.d("onfailure", t.message)
             }
+
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                if(response.code() == 200){
+                if (response.code() == 200) {
                     val fragment: Fragment = AccountFragment()
                     val fm: FragmentManager? = fragmentManager
                     val transaction: FragmentTransaction = fm!!.beginTransaction()
@@ -102,7 +104,7 @@ class ChangeProfileFragment : Fragment() {
                 }
             }
 
-        } )
+        })
     }
 }
 
