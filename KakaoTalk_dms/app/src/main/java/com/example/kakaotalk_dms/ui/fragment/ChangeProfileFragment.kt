@@ -104,7 +104,7 @@ class ChangeProfileFragment : Fragment() {
                 }
             }
 
-        })
+        } )
     }
 }
 
