@@ -73,8 +73,7 @@ class ChangeProfileFragment : Fragment() {
             change_profile_backimage.setImageURI(backImageUri)
         }
     }
-
-    private fun changeProfile() {
+    fun changeProfile() {
         val ifMobile = "mobile"
         val where: RequestBody =
             RequestBody.create(MediaType.parse("text/plain"), ifMobile)
