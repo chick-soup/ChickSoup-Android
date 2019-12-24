@@ -83,13 +83,13 @@ class ChangeProfileFragment : Fragment() {
             RequestBody.create(MediaType.parse("text/plain"),change_message_editText.text.toString())
         val token = UtilClass.getToken(activity!!.applicationContext)
         Log.d("changeProfile",token)
-        val call = Retrofit().service.changeProfile(token,nickname,statusMessage, where)
+        val call = Retrofit().service.changeProfile(token,nickname,statusMessage,where)
         call.enqueue(object :Callback<Void>{
             override fun onFailure(call: Call<Void>, t: Throwable) {
                 Log.d("onfailure",t.message)
             }
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                if(response.code() == 200) {
+                if(response.code() == 200){
                     val fragment: Fragment = AccountFragment()
                     val fm: FragmentManager? = fragmentManager
                     val transaction: FragmentTransaction = fm!!.beginTransaction()
