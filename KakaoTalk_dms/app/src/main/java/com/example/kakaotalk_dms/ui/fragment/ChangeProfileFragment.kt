@@ -76,9 +76,9 @@ class ChangeProfileFragment : Fragment() {
     fun changeProfile() {
         val ifMobile = "mobile"
         val where:RequestBody =
-            RequestBody.create(MediaType.parse("text/plain"), ifMobile)
+            RequestBody.create(MediaType.parse("text/plain"),ifMobile)
         val nickname: RequestBody =
-            RequestBody.create(MediaType.parse("text/plain"), change_nick_editText.text.toString())
+            RequestBody.create(MediaType.parse("text/plain"),change_nick_editText.text.toString())
         val statusMessage: RequestBody =
             RequestBody.create(MediaType.parse("text/plain"),change_message_editText.text.toString())
         val token = UtilClass.getToken(activity!!.applicationContext)
