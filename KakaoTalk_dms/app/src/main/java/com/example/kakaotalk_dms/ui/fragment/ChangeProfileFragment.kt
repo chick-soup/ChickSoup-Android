@@ -75,7 +75,7 @@ class ChangeProfileFragment : Fragment() {
     }
     fun changeProfile() {
         val ifMobile = "mobile"
-        val where: RequestBody =
+        val where:RequestBody =
             RequestBody.create(MediaType.parse("text/plain"), ifMobile)
         val nickname: RequestBody =
             RequestBody.create(MediaType.parse("text/plain"), change_nick_editText.text.toString())
