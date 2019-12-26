@@ -10,72 +10,92 @@
 
     <View
         android:id="@+id/view3"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_marginTop="408dp"
         android:background="#ffffff"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/view4"
-        android:layout_width="352dp"
+        android:layout_width="350dp"
         android:layout_height="48dp"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="6dp"
         android:background="@drawable/chat_edit_back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toEndOf="@+id/plus_media_btn"
         app:layout_constraintTop_toTopOf="@+id/view3"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.01" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/plus_media_btn"
         android:layout_width="40dp"
         android:layout_height="30dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="6dp"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/view3"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view3"
-        app:layout_constraintVertical_bias="0.571"
+        app:layout_constraintVertical_bias="0.058"
         app:srcCompat="@drawable/plus_media" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/chatroom_editText"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:background="@null"
         android:layout_marginStart="16dp"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="6dp"
+        android:background="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/view4"
         app:layout_constraintTop_toTopOf="@+id/view3"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.025" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/plus_imotion_btn"
         android:layout_width="40dp"
         android:layout_height="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintEnd_toStartOf="@+id/imageView9"
+        app:layout_constraintStart_toEndOf="@+id/chatroom_editText"
         app:layout_constraintTop_toTopOf="@+id/view3"
-        app:layout_constraintVertical_bias="0.44"
+        app:layout_constraintVertical_bias="0.06"
         app:srcCompat="@drawable/imotion" />
 
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="40dp"
         android:layout_height="30dp"
+        android:layout_marginStart="1dp"
         android:layout_marginEnd="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/view4"
+        app:layout_constraintStart_toEndOf="@+id/plus_imotion_btn"
         app:layout_constraintTop_toTopOf="@+id/view3"
-        app:layout_constraintVertical_bias="0.466"
+        app:layout_constraintVertical_bias="0.06"
         app:srcCompat="@drawable/hastag" />
+
+    <View
+        android:id="@+id/extra_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:animateLayoutChanges="true"
+        android:background="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view3"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
