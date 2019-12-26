@@ -1,16 +1,15 @@
 package com.example.kakaotalk_dms.ui.activity
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
-import android.view.animation.AlphaAnimation
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.kakaotalk_dms.R
@@ -27,7 +26,7 @@ class ChatRoomActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_room)
 
-        extra_view.visibility = View.GONE
+        media_view.visibility = View.GONE
         setSupportActionBar(chatroom_bar)
         initLayout()
 
@@ -48,10 +47,11 @@ class ChatRoomActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 i = 1 - i
                 if (i == 1) {
                     plus_media_btn.setImageResource(R.drawable.yellow_plus_media)
-                    extra_view.visibility = View.VISIBLE
+                    media_view.visibility = View.VISIBLE
+                    media_view.hideKeyboard()
                 } else {
                     plus_media_btn.setImageResource(R.drawable.plus_media)
-                    extra_view.visibility = View.INVISIBLE
+                    media_view.visibility = View.GONE
                 }
             }
         }
@@ -78,23 +78,18 @@ class ChatRoomActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     }
 
     private fun initLayout() {
-        Log.d("initLayout", "넘어왔네요")
-        //val drawerLayout = findViewById<DrawerLayout>(R.id.dl_main_drawer_root)
-
-        //val chatroom_bar = findViewById<Toolbar>(R.id.chatroom_bar)
         val ab: ActionBar? = supportActionBar
         ab?.title = null
         ab?.setDisplayShowCustomEnabled(true)
-
-        // val drawerToggle = ActionBarDrawerToggle(this,drawerLayout,chatroom_bar,
-        //   R.string.drawer_open, R.string.drawer_close)
-//        drawerLayout.addDrawerListener(drawerToggle)
-//        drawerToggle.syncState()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.chatroom_menu, menu)
         return true
+    }
+    fun View.hideKeyboard(){
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
     }
 }
 
