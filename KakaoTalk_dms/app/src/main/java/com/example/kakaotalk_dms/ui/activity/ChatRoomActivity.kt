@@ -51,7 +51,7 @@ class ChatRoomActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                     extra_view.visibility = View.VISIBLE
                 } else {
                     plus_media_btn.setImageResource(R.drawable.plus_media)
-                    extra_view.visibility = View.GONE
+                    extra_view.visibility = View.INVISIBLE
                 }
             }
         }
