@@ -5,97 +5,264 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="60dp"
-    tools:showIn="@layout/chatroom_appbar"
-    android:background="@color/chatting_back_color" >
+    android:background="@color/chatting_back_color"
+    tools:showIn="@layout/chatroom_appbar">
 
-    <View
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/view3"
         android:layout_width="match_parent"
         android:layout_height="57dp"
-        android:layout_marginTop="408dp"
         android:background="#ffffff"
+        app:layout_constraintBottom_toTopOf="@+id/media_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <View
-        android:id="@+id/view4"
-        android:layout_width="350dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="6dp"
-        android:background="@drawable/chat_edit_back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toEndOf="@+id/plus_media_btn"
-        app:layout_constraintTop_toTopOf="@+id/view3"
-        app:layout_constraintVertical_bias="0.01" />
+        <View
+            android:id="@+id/chatroom_editText_backView"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:background="@drawable/chat_edit_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline102"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.444" />
 
-    <ImageView
-        android:id="@+id/plus_media_btn"
-        android:layout_width="40dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/view3"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view3"
-        app:layout_constraintVertical_bias="0.058"
-        app:srcCompat="@drawable/plus_media" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.02" />
 
-    <EditText
-        android:id="@+id/chatroom_editText"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="6dp"
-        android:background="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/view4"
-        app:layout_constraintTop_toTopOf="@+id/view3"
-        app:layout_constraintVertical_bias="0.025" />
+        <ImageView
+            android:id="@+id/plus_imotion_btn"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView9"
+            app:layout_constraintStart_toEndOf="@+id/chatroom_editText"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/plus_imotion_btn" />
 
-    <ImageView
-        android:id="@+id/plus_imotion_btn"
-        android:layout_width="40dp"
-        android:layout_height="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView9"
-        app:layout_constraintStart_toEndOf="@+id/chatroom_editText"
-        app:layout_constraintTop_toTopOf="@+id/view3"
-        app:layout_constraintVertical_bias="0.06"
-        app:srcCompat="@drawable/imotion" />
+        <EditText
+            android:id="@+id/chatroom_editText"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:paddingStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline108"
+            app:layout_constraintStart_toStartOf="@+id/chatroom_editText_backView"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="40dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/view4"
-        app:layout_constraintStart_toEndOf="@+id/plus_imotion_btn"
-        app:layout_constraintTop_toTopOf="@+id/view3"
-        app:layout_constraintVertical_bias="0.06"
-        app:srcCompat="@drawable/hastag" />
+        <ImageView
+            android:id="@+id/plus_media_btn"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline102"
+            app:layout_constraintStart_toStartOf="@+id/guideline100"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/plus_media_image" />
 
-    <View
-        android:id="@+id/extra_view"
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline94"
+            app:layout_constraintStart_toStartOf="@+id/guideline93"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/hastag" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline108"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline102"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.12" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline93"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8982188" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline94"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.98" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/media_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="260dp"
         android:animateLayoutChanges="true"
-        android:background="#ffffff"
+        android:background="#F0F0F0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/chatroom_photo_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사진"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline96"
+            app:layout_constraintStart_toStartOf="@+id/guideline95"
+            app:layout_constraintTop_toBottomOf="@+id/chat_camera_image"
+            app:layout_constraintVertical_bias="0.2" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline96"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.28" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline95"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.08" />
+
+        <ImageView
+            android:id="@+id/chat_camera_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline98"
+            app:layout_constraintEnd_toStartOf="@+id/guideline96"
+            app:layout_constraintStart_toStartOf="@+id/guideline95"
+            app:layout_constraintTop_toTopOf="@+id/guideline97"
+            app:srcCompat="@drawable/camera" />
+
+        <TextView
+            android:id="@+id/chatroom_file_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="파일"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline137"
+            app:layout_constraintStart_toStartOf="@+id/guideline136"
+            app:layout_constraintTop_toTopOf="@+id/guideline98"
+            app:layout_constraintVertical_bias="0.2" />
+
+        <TextView
+            android:id="@+id/chatroom_video_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비디오"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline130"
+            app:layout_constraintStart_toStartOf="@+id/guideline135"
+            app:layout_constraintTop_toTopOf="@+id/guideline98"
+            app:layout_constraintVertical_bias="0.2" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline130"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.92" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline97"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.24" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline98"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.64" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline99"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="472dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline135"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.72" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline136"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline137"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.6" />
+
+        <ImageView
+            android:id="@+id/chat_file_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline98"
+            app:layout_constraintEnd_toStartOf="@+id/guideline137"
+            app:layout_constraintStart_toStartOf="@+id/guideline136"
+            app:layout_constraintTop_toTopOf="@+id/guideline97"
+            app:srcCompat="@drawable/file_image" />
+
+        <ImageView
+            android:id="@+id/chat_video_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline98"
+            app:layout_constraintEnd_toStartOf="@+id/guideline130"
+            app:layout_constraintStart_toStartOf="@+id/guideline135"
+            app:layout_constraintTop_toTopOf="@+id/guideline97"
+            app:srcCompat="@drawable/video_image" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/imotion_view"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:animateLayoutChanges="true"
+        android:background="#F0F0F0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
