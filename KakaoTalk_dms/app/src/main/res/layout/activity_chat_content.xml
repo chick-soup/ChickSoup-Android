@@ -43,7 +43,7 @@
             app:layout_constraintEnd_toStartOf="@+id/imageView9"
             app:layout_constraintStart_toEndOf="@+id/chatroom_editText"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/imotion" />
+            app:srcCompat="@drawable/plus_imotion_btn" />
 
         <EditText
             android:id="@+id/chatroom_editText"
@@ -64,7 +64,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline102"
             app:layout_constraintStart_toStartOf="@+id/guideline100"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/plus_media" />
+            app:srcCompat="@drawable/plus_media_image" />
 
         <ImageView
             android:id="@+id/imageView9"
@@ -110,7 +110,7 @@
         android:layout_width="match_parent"
         android:layout_height="260dp"
         android:animateLayoutChanges="true"
-        android:background="#ffffff"
+        android:background="#F0F0F0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -239,8 +239,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline137"
             app:layout_constraintStart_toStartOf="@+id/guideline136"
             app:layout_constraintTop_toTopOf="@+id/guideline97"
-            app:srcCompat="@drawable/file_image"
-            android:contentDescription="TODO" />
+            app:srcCompat="@drawable/file_image" />
 
         <ImageView
             android:id="@+id/chat_video_image"
@@ -251,6 +250,18 @@
             app:layout_constraintStart_toStartOf="@+id/guideline135"
             app:layout_constraintTop_toTopOf="@+id/guideline97"
             app:srcCompat="@drawable/video_image" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/imotion_view"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:animateLayoutChanges="true"
+        android:background="#F0F0F0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
