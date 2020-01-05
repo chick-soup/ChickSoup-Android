@@ -5,6 +5,7 @@ import com.example.kakaotalk_dms.data.Profile
 import com.example.kakaotalk_dms.data.SignIn
 import com.example.kakaotalk_dms.data.SignUp1
 import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -49,5 +50,5 @@ interface RetrofitNetwork {
                       @Part("where")mobile:RequestBody): Call<Void>
 
     @GET("/users/my/friends")
-    fun getFriend(): Call<List<JsonArray>>
+    fun getFriend(@Header("Authorization") authorization: String): Call<String>
 }
