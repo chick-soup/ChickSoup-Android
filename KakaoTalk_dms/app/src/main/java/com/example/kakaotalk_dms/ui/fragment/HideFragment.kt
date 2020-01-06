@@ -43,7 +43,7 @@ class HideFragment : Fragment() {
 
         val myFriend: ArrayList<Friend> = ArrayList()
 
-        val call = Retrofit().service.getFriendsMute(UtilClass.getToken(activity!!.applicationContext))
+        val call = Retrofit().service.getFriendsHidden(UtilClass.getToken(activity!!.applicationContext))
         call.enqueue(object: Callback<JsonObject> {
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                 Log.e("fail", t.message.toString())
@@ -65,14 +65,6 @@ class HideFragment : Fragment() {
         for(i in myFriend){
             hideAdapter.add(HideUser(i.nickname, i.id))
         }
-
-        hideAdapter.add(HideUser("a", "dd"))
-        hideAdapter.add(HideUser("a", ""))
-        hideAdapter.add(HideUser("a", "dd"))
-        hideAdapter.add(HideUser("a", "dd"))
-        hideAdapter.add(HideUser("a", "dd"))
-        hideAdapter.add(HideUser("a", ""))
-        hideAdapter.add(HideUser("ab", "dd"))
 
         hide_back_btn.setOnClickListener {
             val transaction = activity?.supportFragmentManager?.beginTransaction()
