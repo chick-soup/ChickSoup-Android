@@ -1,13 +1,22 @@
 package com.example.kakaotalk_dms.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kakaotalk_dms.R
+import com.example.kakaotalk_dms.Retrofit
+import com.example.kakaotalk_dms.data.Friend
 import com.example.kakaotalk_dms.model.User
 import com.example.kakaotalk_dms.ui.adapter.FriendAdapter
+import com.example.kakaotalk_dms.util.UtilClass
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.fragment_friends.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FriendFragment : Fragment() {
 
@@ -27,15 +36,30 @@ class FriendFragment : Fragment() {
         friendsRecycler.layoutManager = lm
         friendsRecycler.setHasFixedSize(true)
 
-        friendAdapter.add(User("석준", "ㅁㄴㅇㄹ","ㅇㅇ"))
-        friendAdapter.add(User("a","","ㅇㅜ"))
-        friendAdapter.add(User("b","a","ㅣㅇ"))
-        friendAdapter.add(User("b","a","ㅏㅇ"))
-        friendAdapter.add(User("b","a","ㅓㅇ"))
-        friendAdapter.add(User("b","a","ㅋㅇ"))
-        friendAdapter.add(User("b","a","ㄴㅇ"))
-        friendAdapter.add(User("b","a","ㅗㅇ"))
-        friendAdapter.add(User("b","a","ㅛㅇ"))
+        val myFriend: ArrayList<Friend> = ArrayList()
+
+        val call = Retrofit().service.getFriends(UtilClass.getToken(activity!!.applicationContext))
+        call.enqueue(object: Callback<JsonObject>{
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                Log.e("fail", t.message.toString())
+            }
+            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                Log.e("suc", response.code().toString())
+                Log.e("suc", response.isSuccessful.toString())
+                Log.e("suc", response.body().toString())
+
+                if(response.body() != null && response.body()!!.isJsonNull)
+                    for(i in 1..response.body()!!.size()) {
+                        val a = response.body()!!.get(i.toString()).asJsonObject
+                        val fr = Friend(a.get("id").asString, a.get("nickname").asString, a.get("status_message").asString, a.get("mute").asString, a.get("hidden").asString, a.get("bookmark").asString)
+                        myFriend.add(fr)
+                    }
+            }
+        })
+
+        for(i in myFriend){
+            friendAdapter.add(User(i.nickname, i.id, i.status_message))
+        }
 
         id_search.setOnClickListener {
             val transaction = activity!!.supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_bottom,R.anim.fade_out)
