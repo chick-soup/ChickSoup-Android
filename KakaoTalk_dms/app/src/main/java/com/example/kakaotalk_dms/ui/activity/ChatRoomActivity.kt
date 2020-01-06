@@ -2,6 +2,8 @@ package com.example.kakaotalk_dms.ui.activity
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -14,15 +16,18 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.kakaotalk_dms.R
 import com.google.android.material.navigation.NavigationView
+import io.socket.client.IO
 import kotlinx.android.synthetic.main.activity_chat_content.*
 import kotlinx.android.synthetic.main.chatroom_appbar.*
 import org.jetbrains.anko.toast
-
+import io.socket.client.Socket
+import java.net.URISyntaxException
 
 class ChatRoomActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
     private val drawerLayout: DrawerLayout? = null
     private var i = 0
     private var j = 0
+    private var socket: Socket? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_room)
@@ -42,6 +47,33 @@ class ChatRoomActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         }
         plus_media_btn.setOnClickListener(this)
         plus_imotion_btn.setOnClickListener(this)
+        chatroom_editText.addTextChangedListener(textWatcher)
+
+        chatroomLayout.setOnClickListener {
+            chatroom_editText.clearFocus()
+            val imm:InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(chatroom_editText.windowToken,0)
+        }
+
+    try{
+        socket = IO.socket("http://10.156.147.139:3000")
+    }catch (e:URISyntaxException){
+        Log.e("ChatRoom socket Error", e.reason)
+    }
+        //socket?.connect()
+    }
+    val textWatcher:TextWatcher = object: TextWatcher{
+        override fun afterTextChanged(p0: Editable?) {
+        }
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            plus_extra_btn.setImageResource(R.drawable.icon_send)
+            if(chatroom_editText.text.isEmpty()) plus_extra_btn.setImageResource(R.drawable.hastag)
+        }
+
     }
     override fun onClick(v: View?){
         when(v?.id){
@@ -92,7 +124,6 @@ class ChatRoomActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         val drawerLayout = findViewById<DrawerLayout>(R.id.dl_main_drawer_root)
         when (item.itemId) {
             R.id.hamburgerIcon -> {
-                Log.d("hamburger", "eat")
                 drawerLayout?.openDrawer(GravityCompat.END)
                 return true
             }
@@ -110,7 +141,7 @@ class ChatRoomActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         menuInflater.inflate(R.menu.chatroom_menu, menu)
         return true
     }
-    fun View.hideKeyboard(){
+    private fun View.hideKeyboard(){
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }

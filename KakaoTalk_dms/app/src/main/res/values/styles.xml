@@ -12,6 +12,10 @@
         <!-- No Title Bar-->
     </style>
 
+    <style name="chatStatusBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorPrimaryDark">@color/chatting_back_color</item>
+    </style>
+
     <style name="IntroTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splashimage</item>
     </style>
