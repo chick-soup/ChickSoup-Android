@@ -51,4 +51,10 @@ interface RetrofitNetwork {
 
     @GET("/users/my/friends")
     fun getFriends(@Header("Authorization") authorization: String): Call<JsonObject>
+
+    @GET("/users/my/friends/hidden")
+    fun getFriendsHidden(@Header("Authorization") authorization: String): Call<JsonObject>
+
+    @GET("/users/my/friends/mute")
+    fun getFriendsMute(@Header("Authorization") authorization: String): Call<JsonObject>
 }

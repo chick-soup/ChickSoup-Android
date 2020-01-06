@@ -3,6 +3,7 @@ package com.example.kakaotalk_dms.ui.fragment
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +11,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.kakaotalk_dms.R
+import com.example.kakaotalk_dms.Retrofit
+import com.example.kakaotalk_dms.data.Friend
 import com.example.kakaotalk_dms.model.BanUser
+import com.example.kakaotalk_dms.model.User
 import com.example.kakaotalk_dms.ui.adapter.BanAdapter
+import com.example.kakaotalk_dms.util.UtilClass
+import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.fragment_ban.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class BanFragment : Fragment() {
 
@@ -32,13 +41,30 @@ class BanFragment : Fragment() {
         banRecyler.layoutManager = lm
         banRecyler.setHasFixedSize(true)
 
-        banAdapter.add(BanUser("a","dd"))
-        banAdapter.add(BanUser("a",""))
-        banAdapter.add(BanUser("a","dd"))
-        banAdapter.add(BanUser("a","dd"))
-        banAdapter.add(BanUser("a","dd"))
-        banAdapter.add(BanUser("a",""))
-        banAdapter.add(BanUser("ab","dd"))
+        val myFriend: ArrayList<Friend> = ArrayList()
+
+        val call = Retrofit().service.getFriendsMute(UtilClass.getToken(activity!!.applicationContext))
+        call.enqueue(object: Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                Log.e("fail", t.message.toString())
+            }
+            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                Log.e("suc", response.code().toString())
+                Log.e("suc", response.isSuccessful.toString())
+                Log.e("suc", response.body().toString())
+
+                if(response.body() != null && response.body()!!.isJsonNull)
+                    for(i in 1..response.body()!!.size()) {
+                        val a = response.body()!!.get(i.toString()).asJsonObject
+                        val fr = Friend(a.get("id").asString, a.get("nickname").asString, a.get("status_message").asString, a.get("mute").asString, a.get("hidden").asString, a.get("bookmark").asString)
+                        myFriend.add(fr)
+                    }
+            }
+        })
+
+        for(i in myFriend){
+            banAdapter.add(BanUser(i.nickname, i.id))
+        }
 
         ban_back_btn.setOnClickListener {
             val transaction = activity?.supportFragmentManager?.beginTransaction()?.setCustomAnimations(R.anim.fade_in,R.anim.fade_out)
