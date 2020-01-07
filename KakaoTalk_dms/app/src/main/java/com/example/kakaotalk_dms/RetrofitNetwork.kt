@@ -59,4 +59,7 @@ interface RetrofitNetwork {
 
     @GET("/users/{id}")
     fun getFriendsID(@Path("id") id: String): Call<IDUser>
+
+    @POST("/users/{id}")
+    fun postFriendsID(@Path("id") id: String): Call<IDUser>
 }
