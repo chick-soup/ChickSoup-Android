@@ -1,6 +1,11 @@
 package com.example.kakaotalk_dms.ui.fragment
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -18,9 +23,11 @@ import com.example.kakaotalk_dms.util.UtilClass
 import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.fragment_ban.*
 import kotlinx.android.synthetic.main.fragment_hide.*
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
 
 class HideFragment : Fragment() {
     override fun onCreateView(
@@ -62,8 +69,27 @@ class HideFragment : Fragment() {
             }
         })
 
+        val myFriendImgs: ArrayList<Uri> = ArrayList()
         for(i in myFriend){
-            hideAdapter.add(HideUser(i.nickname, i.id))
+            val call2 = Retrofit().service.getFriendsImg(i.id)
+            call2.enqueue(object : Callback<ResponseBody> {
+                override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
+                    Log.e("Pro1", response?.body().toString())
+                    if (response?.body() != null) {
+                        val bytes = response.body()!!.bytes()
+                        val bmp: Bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                        //BitmapFactory.decodeStream(response.body()!!.byteStream())
+                        myFriendImgs.add(getImageUri(context, bmp))
+                    }
+                }
+                override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
+                    Log.e("Pro1", t.toString())
+                }
+            })
+        }
+
+        for(i in 0..myFriend.size){
+            hideAdapter.add(HideUser(myFriend[i].nickname, myFriendImgs[i].toString()))
         }
 
         hide_back_btn.setOnClickListener {
@@ -72,5 +98,12 @@ class HideFragment : Fragment() {
             transaction?.replace(R.id.main_frame, SettingFragment())
             transaction?.commit()
         }
+    }
+
+    fun getImageUri(inContext: Context?, inImage: Bitmap): Uri {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = MediaStore.Images.Media.insertImage(inContext?.contentResolver, inImage, "Title", null)
+        return Uri.parse(path)
     }
 }

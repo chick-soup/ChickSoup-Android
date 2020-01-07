@@ -8,8 +8,10 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
+import java.io.File
 
 interface RetrofitNetwork {
     @POST("/email/check")
@@ -57,4 +59,7 @@ interface RetrofitNetwork {
 
     @GET("/users/my/friends/mute")
     fun getFriendsMute(@Header("Authorization") authorization: String): Call<JsonObject>
+
+    @GET("https://chicksoup.s3.ap-northeast-2.amazonaws.com/media/image/user/background/mobile/{id}.png")
+    fun getFriendsImg(@Path("id") id: String): Call<ResponseBody>
 }

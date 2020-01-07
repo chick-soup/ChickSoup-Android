@@ -1,8 +1,11 @@
 package com.example.kakaotalk_dms.ui.fragment
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,9 +22,11 @@ import com.example.kakaotalk_dms.ui.adapter.BanAdapter
 import com.example.kakaotalk_dms.util.UtilClass
 import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.fragment_ban.*
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
 
 class BanFragment : Fragment() {
 
@@ -62,8 +67,27 @@ class BanFragment : Fragment() {
             }
         })
 
+        val myFriendImgs: ArrayList<Uri> = ArrayList()
         for(i in myFriend){
-            banAdapter.add(BanUser(i.nickname, i.id))
+            val call2 = Retrofit().service.getFriendsImg(i.id)
+            call2.enqueue(object : Callback<ResponseBody> {
+                override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
+                    Log.e("Pro1", response?.body().toString())
+                    if (response?.body() != null) {
+                        val bytes = response.body()!!.bytes()
+                        val bmp: Bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                        //BitmapFactory.decodeStream(response.body()!!.byteStream())
+                        myFriendImgs.add(getImageUri(context, bmp))
+                    }
+                }
+                override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
+                    Log.e("Pro1", t.toString())
+                }
+            })
+        }
+
+        for(i in 0..myFriend.size){
+            banAdapter.add(BanUser(myFriend[i].nickname, myFriendImgs[i].toString()))
         }
 
         ban_back_btn.setOnClickListener {
@@ -71,6 +95,12 @@ class BanFragment : Fragment() {
             transaction?.replace(R.id.main_frame,SettingFragment())
             transaction?.commit()
         }
+    }
 
+    fun getImageUri(inContext: Context?, inImage: Bitmap): Uri {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = MediaStore.Images.Media.insertImage(inContext?.contentResolver, inImage, "Title", null)
+        return Uri.parse(path)
     }
 }
