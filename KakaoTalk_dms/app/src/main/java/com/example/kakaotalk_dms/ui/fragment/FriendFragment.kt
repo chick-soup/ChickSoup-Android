@@ -81,9 +81,16 @@ class FriendFragment : Fragment() {
                 }
             })
         }
-
-        for(i in 0..myFriend.size){
-            friendAdapter.add(User(myFriend[i].nickname, myFriendImgs[i].toString(), myFriend[i].status_message))
+        if (myFriend.size != 0) {
+            for (i in 0..myFriend.size) {
+                friendAdapter.add(
+                    User(
+                        myFriend[i].nickname,
+                        myFriendImgs[i].toString(),
+                        myFriend[i].status_message
+                    )
+                )
+            }
         }
 
         id_search.setOnClickListener {

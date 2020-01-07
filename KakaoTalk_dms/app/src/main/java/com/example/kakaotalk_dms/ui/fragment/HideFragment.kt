@@ -88,8 +88,10 @@ class HideFragment : Fragment() {
             })
         }
 
-        for(i in 0..myFriend.size){
-            hideAdapter.add(HideUser(myFriend[i].nickname, myFriendImgs[i].toString()))
+        if (myFriend.size != 0) {
+            for (i in 0..myFriend.size) {
+                hideAdapter.add(HideUser(myFriend[i].nickname, myFriendImgs[i].toString()))
+            }
         }
 
         hide_back_btn.setOnClickListener {

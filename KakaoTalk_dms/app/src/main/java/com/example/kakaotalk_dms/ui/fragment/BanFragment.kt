@@ -86,8 +86,10 @@ class BanFragment : Fragment() {
             })
         }
 
-        for(i in 0..myFriend.size){
-            banAdapter.add(BanUser(myFriend[i].nickname, myFriendImgs[i].toString()))
+        if (myFriend.size != 0) {
+            for (i in 0..myFriend.size) {
+                banAdapter.add(BanUser(myFriend[i].nickname, myFriendImgs[i].toString()))
+            }
         }
 
         ban_back_btn.setOnClickListener {
