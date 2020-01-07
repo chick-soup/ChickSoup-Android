@@ -1,9 +1,6 @@
 package com.example.kakaotalk_dms
 
-import com.example.kakaotalk_dms.data.KakaoId
-import com.example.kakaotalk_dms.data.Profile
-import com.example.kakaotalk_dms.data.SignIn
-import com.example.kakaotalk_dms.data.SignUp1
+import com.example.kakaotalk_dms.data.*
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
@@ -60,6 +57,6 @@ interface RetrofitNetwork {
     @GET("/users/my/friends/mute")
     fun getFriendsMute(@Header("Authorization") authorization: String): Call<JsonObject>
 
-    @GET("https://chicksoup.s3.ap-northeast-2.amazonaws.com/media/image/user/background/mobile/{id}.png")
-    fun getFriendsImg(@Path("id") id: String): Call<ResponseBody>
+    @GET("/users/{id}")
+    fun getFriendsID(@Path("id") id: String): Call<IDUser>
 }

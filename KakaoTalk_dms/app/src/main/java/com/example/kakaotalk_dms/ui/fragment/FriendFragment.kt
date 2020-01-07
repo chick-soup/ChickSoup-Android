@@ -13,16 +13,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kakaotalk_dms.R
 import com.example.kakaotalk_dms.Retrofit
 import com.example.kakaotalk_dms.data.Friend
+import com.example.kakaotalk_dms.data.IDUser
 import com.example.kakaotalk_dms.model.User
 import com.example.kakaotalk_dms.ui.adapter.FriendAdapter
 import com.example.kakaotalk_dms.util.UtilClass
 import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.fragment_friends.*
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.BufferedInputStream
 import java.io.ByteArrayOutputStream
+import java.net.URL
+import java.net.URLConnection
 
 class FriendFragment : Fragment() {
 
@@ -43,7 +46,6 @@ class FriendFragment : Fragment() {
         friendsRecycler.setHasFixedSize(true)
 
         val myFriend: ArrayList<Friend> = ArrayList()
-
         val call = Retrofit().service.getFriends(UtilClass.getToken(activity!!.applicationContext))
         call.enqueue(object: Callback<JsonObject>{
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
@@ -65,22 +67,24 @@ class FriendFragment : Fragment() {
 
         val myFriendImgs: ArrayList<Uri> = ArrayList()
         for(i in myFriend){
-            val call2 = Retrofit().service.getFriendsImg(i.id)
-            call2.enqueue(object : Callback<ResponseBody> {
-                override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
+            val call2 = Retrofit().service.getFriendsID(i.id)
+            call2.enqueue(object : Callback<IDUser> {
+                override fun onResponse(call: Call<IDUser>?, response: Response<IDUser>?) {
                     Log.e("Pro1", response?.body().toString())
-                    if (response?.body() != null) {
-                        val bytes = response.body()!!.bytes()
-                        val bmp: Bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-                        //BitmapFactory.decodeStream(response.body()!!.byteStream())
-                        myFriendImgs.add(getImageUri(context, bmp))
+                    if (response?.code() != 200) {
+                        GetImageFromURL("https://chicksoup.s3.ap-northeast-2.amazonaws.com/media/image/user/background/mobile/${response?.body()?.id!!}.png")?.let {
+                            myFriendImgs.add(
+                                it
+                            )
+                        }
                     }
                 }
-                override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
+                override fun onFailure(call: Call<IDUser>?, t: Throwable?) {
                     Log.e("Pro1", t.toString())
                 }
             })
         }
+
         if (myFriend.size != 0) {
             for (i in 0..myFriend.size) {
                 friendAdapter.add(
@@ -102,9 +106,26 @@ class FriendFragment : Fragment() {
 
     }
 
-    fun getImageUri(inContext: Context?, inImage: Bitmap): Uri {
+    private fun GetImageFromURL(strImageURL: String): Uri? {
+        var imgBitmap: Bitmap? = null
+
+        try{
+            val conn: URLConnection = URL(strImageURL).openConnection()
+            conn.connect()
+
+            val bis = BufferedInputStream(conn.getInputStream(), conn.contentLength)
+            imgBitmap = BitmapFactory.decodeStream(bis)
+            bis.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return getImageUri(context, imgBitmap)
+    }
+
+    fun getImageUri(inContext: Context?, inImage: Bitmap?): Uri {
         val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        inImage?.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path = MediaStore.Images.Media.insertImage(inContext?.contentResolver, inImage, "Title", null)
         return Uri.parse(path)
     }
