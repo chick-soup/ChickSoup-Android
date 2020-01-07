@@ -1,5 +1,6 @@
 package com.example.kakaotalk_dms.ui.adapter
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,7 +39,7 @@ class FriendAdapter : RecyclerView.Adapter<FriendAdapter.Holder>() {
             if (data.image != "")
                 friendsImage?.setImageResource(R.drawable.kakaotalk_logo)
             else
-                friendsImage?.setImageResource(R.mipmap.ic_launcher)
+                friendsImage?.setImageURI(Uri.parse(data.image))
 
             nick?.text = data.nick
             message?.text = data.message
