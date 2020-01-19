@@ -182,6 +182,7 @@ class ChatRoomActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     }
 
     private fun sendMessage(chatAdapter: ChatAdapter): Emitter.Listener = Emitter.Listener { args ->
+        Log.d(" sendMessage connected","connected")
         runOnUiThread {
             val chatData: JSONObject = args[0] as JSONObject
             Log.d("chat 내용", chatData.getString("chat").toString())
