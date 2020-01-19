@@ -42,7 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/plus_extra_btn"
+            app:layout_constraintEnd_toStartOf="@+id/plus_send_btn"
             app:layout_constraintStart_toEndOf="@+id/chatroom_editText"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/plus_imotion_btn" />
@@ -69,7 +69,7 @@
             app:srcCompat="@drawable/plus_media_image" />
 
         <ImageView
-            android:id="@+id/plus_extra_btn"
+            android:id="@+id/plus_send_btn"
             android:layout_width="0dp"
             android:layout_height="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
