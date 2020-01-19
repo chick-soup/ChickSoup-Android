@@ -1,15 +1,11 @@
 package com.example.kakaotalk_dms.ui.fragment
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
 import com.example.kakaotalk_dms.R
-import com.example.kakaotalk_dms.ui.activity.SignInActivity
 import com.example.kakaotalk_dms.util.UtilClass
 import kotlinx.android.synthetic.main.fragment_setting.*
 

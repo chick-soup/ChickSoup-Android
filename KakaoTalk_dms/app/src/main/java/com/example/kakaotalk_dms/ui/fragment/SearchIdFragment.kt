@@ -47,6 +47,8 @@ class SearchIdFragment : Fragment() {
             transaction.replace(R.id.main_frame,FriendFragment())
             transaction.commit()
         }
+
+
     }
 }
 
